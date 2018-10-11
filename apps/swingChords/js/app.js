@@ -39,14 +39,14 @@ define("Data/allChords", ["require", "exports"], function (require, exports) {
                     root: { string: 5, fret: 4 },
                     notes: [
                         { string: 4, fret: 3, interval: "3" },
-                        { string: 3, fret: 2, interval: "&sharp;5" }
+                        { string: 3, fret: 2, interval: "+5" }
                     ]
                 },
                 {
                     name: "min6",
                     root: { string: 5, fret: 4 },
                     notes: [
-                        { string: 4, fret: 2, interval: "&flat;3" },
+                        { string: 4, fret: 2, interval: "-3" },
                         { string: 3, fret: 3, interval: "6" }
                     ]
                 },
@@ -54,32 +54,32 @@ define("Data/allChords", ["require", "exports"], function (require, exports) {
                     name: "dim7",
                     root: { string: 5, fret: 4 },
                     notes: [
-                        { string: 4, fret: 2, interval: "&flat;3" },
-                        { string: 3, fret: 3, interval: "&flat;&flat;7" }
+                        { string: 4, fret: 2, interval: "-3" },
+                        { string: 3, fret: 3, interval: "--7" }
                     ]
                 },
                 {
                     name: "min7(&flat;5)",
                     root: { string: 5, fret: 3 },
                     notes: [
-                        { string: 4, fret: 4, interval: "&flat;5" },
-                        { string: 3, fret: 3, interval: "&flat;7" }
+                        { string: 4, fret: 4, interval: "-5" },
+                        { string: 3, fret: 3, interval: "-7" }
                     ]
                 },
                 {
                     name: "min7(&flat;5)",
                     root: { string: 5, fret: 4 },
                     notes: [
-                        { string: 4, fret: 2, interval: "&flat;3" },
-                        { string: 3, fret: 4, interval: "&flat;7" }
+                        { string: 4, fret: 2, interval: "-3" },
+                        { string: 3, fret: 4, interval: "-7" }
                     ]
                 },
                 {
                     name: "min7",
                     root: { string: 5, fret: 4 },
                     notes: [
-                        { string: 4, fret: 2, interval: "&flat;3" },
-                        { string: 3, fret: 4, interval: "&flat;7" }
+                        { string: 4, fret: 2, interval: "-3" },
+                        { string: 3, fret: 4, interval: "-7" }
                     ]
                 },
                 {
@@ -87,7 +87,7 @@ define("Data/allChords", ["require", "exports"], function (require, exports) {
                     root: { string: 5, fret: 3 },
                     notes: [
                         { string: 4, fret: 2, interval: "3" },
-                        { string: 3, fret: 3, interval: "&flat;7" }
+                        { string: 3, fret: 3, interval: "-7" }
                     ]
                 },
                 {
@@ -108,14 +108,14 @@ define("Data/allChords", ["require", "exports"], function (require, exports) {
                     root: { string: 4, fret: 4 },
                     notes: [
                         { string: 6, fret: 2, interval: "5" },
-                        { string: 3, fret: 2, interval: "&flat;3" }
+                        { string: 3, fret: 2, interval: "-3" }
                     ]
                 },
                 {
                     name: "min/3",
                     root: { string: 4, fret: 2 },
                     notes: [
-                        { string: 6, fret: 3, interval: "&flat;3" },
+                        { string: 6, fret: 3, interval: "-3" },
                         { string: 3, fret: 4, interval: "5" }
                     ]
                 },
@@ -147,7 +147,7 @@ define("Data/allChords", ["require", "exports"], function (require, exports) {
                     root: { string: 6, fret: 4 },
                     notes: [
                         { string: 5, fret: 3, interval: "3" },
-                        { string: 4, fret: 2, interval: "&sharp;5" }
+                        { string: 4, fret: 2, interval: "+5" }
                     ]
                 },
                 {
@@ -172,46 +172,46 @@ define("Data/allChords", ["require", "exports"], function (require, exports) {
                     root: { string: 6, fret: 3 },
                     notes: [
                         { string: 4, fret: 2, interval: "6" },
-                        { string: 3, fret: 3, interval: "&flat;3" }
+                        { string: 3, fret: 3, interval: "-3" }
                     ]
                 },
                 {
                     name: "dim7",
                     root: { string: 6, fret: 3 },
                     notes: [
-                        { string: 4, fret: 2, interval: "&flat;&flat;7" },
-                        { string: 3, fret: 3, interval: "&flat;3" }
+                        { string: 4, fret: 2, interval: "--7" },
+                        { string: 3, fret: 3, interval: "-3" }
                     ]
                 },
                 {
                     name: "min7(&flat;5)",
                     root: { string: 6, fret: 2 },
                     notes: [
-                        { string: 5, fret: 3, interval: "&flat;5" },
-                        { string: 4, fret: 2, interval: "&flat;7" }
+                        { string: 5, fret: 3, interval: "-5" },
+                        { string: 4, fret: 2, interval: "-7" }
                     ]
                 },
                 {
                     name: "min7(&flat;5)",
                     root: { string: 6, fret: 3 },
                     notes: [
-                        { string: 4, fret: 3, interval: "&flat;7" },
-                        { string: 3, fret: 3, interval: "&flat;3" }
+                        { string: 4, fret: 3, interval: "-7" },
+                        { string: 3, fret: 3, interval: "-3" }
                     ]
                 },
                 {
                     name: "min7",
                     root: { string: 6, fret: 3 },
                     notes: [
-                        { string: 4, fret: 3, interval: "&flat;7" },
-                        { string: 3, fret: 3, interval: "&flat;3" }
+                        { string: 4, fret: 3, interval: "-7" },
+                        { string: 3, fret: 3, interval: "-3" }
                     ]
                 },
                 {
                     name: "7",
                     root: { string: 6, fret: 3 },
                     notes: [
-                        { string: 4, fret: 3, interval: "&flat;7" },
+                        { string: 4, fret: 3, interval: "-7" },
                         { string: 3, fret: 4, interval: "3" }
                     ]
                 },
@@ -221,7 +221,7 @@ define("Data/allChords", ["require", "exports"], function (require, exports) {
                     notes: [
                         { string: 6, fret: 3, interval: "5" },
                         { string: 4, fret: 2, interval: "3" },
-                        { string: 3, fret: 3, interval: "&flat;7" }
+                        { string: 3, fret: 3, interval: "-7" }
                     ]
                 },
                 {
@@ -292,7 +292,8 @@ define("Implementations/SvgGenerator", ["require", "exports"], function (require
                 { "cy": "50%" },
                 { "r": "50%" }
             ]);
-            const dotTextClass = (!isRoot && (noteObject.interval.includes("&flat;") || noteObject.interval.includes("&sharp;"))) ? "accidental" : "";
+            const isAccidental = !isRoot ? noteObject.interval.includes("-") || noteObject.interval.includes("+") : false;
+            const dotTextClass = isAccidental ? "accidental" : "";
             const dotText = this.createSvgWithAttributes("text", [
                 { "class": dotTextClass },
                 { "x": "50%" },
@@ -300,6 +301,10 @@ define("Implementations/SvgGenerator", ["require", "exports"], function (require
                 { "text-anchor": "middle" },
                 { "dy": ".3em" }
             ]);
+            if (isAccidental) {
+                noteObject.interval = noteObject.interval.replace(/-/gi, "&flat;");
+                noteObject.interval = noteObject.interval.replace(/\+/gi, "&sharp;");
+            }
             dotText.innerHTML = isRoot ? "R" : noteObject.interval;
             dotBox.appendChild(note);
             dotBox.appendChild(dotText);

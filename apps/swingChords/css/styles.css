@@ -3,12 +3,12 @@
 /* Element Selectors */
 html {
   background: white;
-  color: black;
+  color: #373a3c;
   margin: 0;
   padding: 0;
 }
 body {
-  font-family: "Arial";
+  font-family: "Segoe UI";
   font-size: 12pt;
   margin: 0;
   padding: 1em 0;
@@ -19,8 +19,9 @@ body {
   }
 }
 h1 {
-  font-size: 2em;
-  font-family: "Times New Roman";
+  font-size: 3.5em;
+  font-family: "Segoe UI";
+  font-weight: 300;
   margin: 0 0 0.5em 0;
   line-height: 1;
   text-align: center;
@@ -29,15 +30,12 @@ h1 {
   h1 {
     margin: 0;
   }
-  h1 > small {
-    display: block;
-  }
 }
 h2 {
-  border-bottom: 1px solid darkslategray;
-  border-top: 1px solid darkslategray;
+  background-color: #eceeef;
   font-size: 1.5em;
   font-style: italic;
+  font-weight: normal;
   clear: both;
   line-height: 1;
   margin: 1em 5vw;
@@ -66,12 +64,13 @@ h2 {
 @media (max-width: 480px) {
   .item {
     margin: 1em 3vw;
-    width: 23vw;
+    width: 35vw;
   }
 }
 .item h3 {
   font-size: 1.66em;
-  font-family: "Arial";
+  font-family: "Segoe UI";
+  font-weight: normal;
   margin: 0 0 0.5em 0;
   line-height: 1;
   text-align: center;
@@ -94,8 +93,8 @@ h2 {
 }
 @media (max-width: 480px) {
   .gridWrap {
-    height: 23vw;
-    width: 23vw;
+    height: 35vw;
+    width: 35vw;
   }
 }
 .gridBox,
@@ -132,7 +131,7 @@ h2 {
   position: absolute;
 }
 .dotBox > .dot {
-  fill: black;
+  fill: #373a3c;
   stroke: none;
 }
 .dotBox > text {
@@ -216,5 +215,5 @@ h2 {
   left: -9%;
 }
 .dotBox.root {
-  background: black;
+  background: #373a3c;
 }

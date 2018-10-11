@@ -1,5 +1,5 @@
 requirejs.config({
-    baseUrl: 'public/js',
+    baseUrl: 'js',
     paths: {
         'Implementations/SwingChordsApp':'app'
     }
