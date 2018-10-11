@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>ChordApp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="public/css/app.css" type="text/css" />
+    <script src="public/js/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header text-center mt-3 mb-4">
+            <h1 class="display-4">Chord Reference</h1>
+        </div>
+        <div id="formContainer" class="row  mb-4">
+            <div class="highlight col-12">
+                <form class="form-inline row">
+                    <div class="form-group mx-auto">
+                        <label for="chordRoot" class="mr-sm-2">Root</label>
+                        <select id="chordRoot" class="form-control mr-sm-3" name="chordRoot"></select>
+                        <label for="chordType" class="mr-sm-2">Type</label>
+                        <select id="chordType" class="form-control mr-sm-3" name="chordType"></select>
+                        <button class="btn btn-primary" id="button">Go</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="tableContainer" class="row">
+            <div id="output" class="col-12"></div>
+        </div>        
+    </div>
+</body>
+</html>
