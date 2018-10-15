@@ -1,18 +1,53 @@
 <!doctype html>
-<head>
+<html ng-app ng-cloak ng-controller="ProjectCtrl">
+	<head>
     <title>alexburr.github.io</title>
-</head>
-<body>
-	<p>Apps</p>
-	<ul>
-		<li><a href="apps/Estimator/index.html">Song Length Estimator</a></li>
-		<li><a href="apps/ChordApp/index.html">Chord Reference</a></li>
-		<li><a href="apps/swingChords/index.html">Swing Chord Voicings</a></li>		
-	</ul>
-	<p>Pages</p>
-	<ul>
-		<li><a href="content/resume/resume.html">Resume (HTML)</a></li>
-		<li><a href="content/resume/Alexander Burr - Web Developer Resume.pdf">Resume (PDF)</a></li>
-	</ul>
-</body>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700" rel="stylesheet" />
+	<style>
+		body { background-color: #f0f0f0; color: #444; font-family: "Open Sans", sans-serif; font-size: 11pt; line-height: 2; margin: 0; padding: 2vh 1vw; }
+		a:link, a:visited { color: #06c; }
+		a:hover, a:active  { color: #09f; }
+		h1 { border-bottom: 1px dotted rgba(0,0,0,0.25); font-size: 1.25em; font-weight: 400; margin: 0 0 1vh 0; }
+		h2 { font-size: .85em; margin: 0; }
+		ul, li { margin: 0; padding: 0; }
+			ul { list-style-type: none; }
+				ul:last-child { margin-bottom: 2vh; }
+				ul ul { margin: 0 0 0 .5vw !important; }
+		.group { background-color: #fff; border: 1px solid rgba(0,0,0,0.25); border-radius: .5em; box-shadow: 0 0 .5em rgba(0,0,0,0.125);
+				/*display: inline-block;*/ margin: 0 auto 1vh auto; padding: .5vh 1vw; vertical-align: top; width: 20vw; }
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+	<script>
+			function ProjectCtrl($scope) {
+				$scope.messages = { };
+				$scope.projects = [
+					{name: "Apps", baseUrl: "apps/", projects: [
+						{name: "Song Length Estimator", url: "Estimator/index.html"},
+						{name: "Chord Reference", url: "ChordApp/index.html"},
+						{name: "Swing Chord Voicings", url: "swingChords/index.html"}
+					]},
+					{name: "Pages", baseUrl: "content/", projects: [
+						{name: "Resume (HTML)", url: "resume/resume.html"},
+						{name: "Resume (PDF)", url: "resume/Alexander Burr - Web Developer Resume.pdf"}						
+					]}
+				];
+			}
+		</script>
+	</head>
+	<body ng-cloak>
+		<div class="group" ng-repeat="group in projects">
+			<h1>{{group.name}}</h1>
+			<ul>
+				<li ng-repeat="project in group.projects">
+					<a ng-hide="project.subProjects" href="{{group.baseUrl}}{{project.url}}">{{project.name}}</a>
+					<h2 ng-show="project.subProjects">{{project.name}}</h2>
+					<ul ng-show="project.subProjects" >
+						<li ng-repeat="subProject in project.projects">
+							<a href="{{group.baseUrl}}{{project.baseUrl}}{{subProject.url}}">{{subProject.name}}</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+  </body>
 <html>
