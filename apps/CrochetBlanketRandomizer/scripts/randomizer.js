@@ -1,66 +1,70 @@
 // -------------
 // SUPPORT CODE
 // -------------
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+class RandomObject {
+    constructor() { }
 
-function toggleLines() {
-    var blanket = document.getElementById('blanket');
-    
-    if (blanket != null) {
-        if (blanket.classList.contains("lined")) {
-            blanket.classList.remove("lined");            
-        } else {
-            blanket.classList.add("lined");
-        }
+    getRandomInt = function(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
 
-class RowColor {
+class RandomColor extends RandomObject {
     constructor(colors) {
+        super();
         let min = 1;
-        let max = numberOfColors;
-        let randomInt = getRandomInt(min, max);
+        let max = Object.keys(colors).length;
+        let randomInt = this.getRandomInt(min, max);
         this.color = colors[randomInt];
     }
 }
 
-var numberOfColors = 6;
+// -------------
+// GLOBALS
+// -------------
+const globals = {
+    blanketDivId: "blanket",
+    blanketLinedClass: "lined",
+    colors: Object.freeze({
+        1: { name: "terracotta", value: "230, 145, 87", textColor: "black", displayName: "Terracotta" },
+        2: { name: "mustard", value: "255, 219, 88", textColor: "black", displayName: "Mustard" },
+        3: { name: "silverblue", value: "201, 217, 229", textColor: "black", displayName: "Silver Blue" },
+        4: { name: "fern", value: "185, 213, 91", textColor: "black", displayName: "Fern" },
+        5: { name: "midnightblue", value: "18, 52, 87", textColor: "white", displayName: "Midnight Blue" },
+        6: { name: "fisherman", value: "243, 237, 215", textColor: "black", displayName: "Fisherman" }
+    })
+};
 
-var colors = Object.freeze({
-    1: { name: "terracotta", value: "rgb(226, 114, 91)", displayName: "Terracotta" },
-    2: { name: "mustard", value: "rgb(255, 219, 88)", displayName: "Mustard" },
-    3: { name: "silverblue", value: "rgb(201,217,229)", displayName: "Silver Blue" },
-    4: { name: "fern", value: "rgb(151,186,118)", displayName: "Fern" },
-    5: { name: "midnightblue", value: "rgb(18,52,87)", displayName: "Midnight Blue" },
-    6: { name: "fisherman", value: "rgb(243,237,215)", displayName: "Fisherman" }
-});
-
-// -------
-// REACT!
-// -------
-var BlanketRow = React.createClass({
+// ----------------
+// REACT COMPONENTS
+// ----------------
+var BlanketRowRender = React.createClass({
     render: function() {
-        var rowColor = new RowColor(this.props.colors);
-        var className = `blanketRow ` + rowColor.color.name;
+        let randomColor = new RandomColor(this.props.colors);
+        let color = randomColor.color;
+        let className = `blanketRow ` + color.name;
+        let rowStyle = {
+            backgroundColor: `rgb(` + color.value + `)`,
+            color: color.textColor
+        };
         return (
-            <div className={className}></div>
+            <div className={className} style={rowStyle}></div>
         )
     }
 })
 
-var Blanket = React.createClass({
+var BlanketRender = React.createClass({
     render: function() {
-        var blanketRows = [];
+        let blanketRows = [];
+
         for (var i = 0; i < this.props.totalRows; i++) {
-            blanketRows.push(<BlanketRow key={i} colors={this.props.colors} />);
+            blanketRows.push(<BlanketRowRender key={i} colors={this.props.colors} />);
         }
 
         return ( 
-            <div id="blanket" className="blanket">
+            <div id={globals.blanketDivId}>
                 {blanketRows}
             </div>
         )
@@ -69,11 +73,18 @@ var Blanket = React.createClass({
 
 var ColorList = React.createClass({
     render: function() {
-        var colors = this.props.colors;
-        var colorList = [];
+        const colors = this.props.colors;
+        const numberOfColors = Object.keys(colors).length;
+        let colorList = [];
         for (var i = 1; i <= numberOfColors; i++ ) {
-            var className = 'list-group-item small ' + colors[i].name;
-            colorList.push(<li key={i} className={className}>{colors[i].displayName}</li>);
+            const color = colors[i];
+            const className = 'list-group-item small d-flex justify-content-between align-items-center' + color.name;
+            const style = {
+                backgroundColor: `rgb(` + color.value + `)`,
+                color: color.textColor
+            };
+            const textValue = `RGB(` + color.value + `)`;
+            colorList.push(<li key={i} className={className} style={style}>{color.displayName} <span className="badge badge-pill">{textValue}</span></li>);
         }
 
         return (
@@ -85,7 +96,7 @@ var ColorList = React.createClass({
 var Form = React.createClass({
     getInitialState: function() {
         return {
-            colors: colors,
+            colors: globals.colors,
             rowMin: 1,
             rowMax: 6,
             totalRows: 50
@@ -107,7 +118,14 @@ var Form = React.createClass({
         this.setState({totalRows: e.target.value});
     },
     handleShowLinesChange: function(e) {
-        toggleLines();
+        const blanket = document.getElementById(globals.blanketDivId);    
+        if (blanket != null) {
+            if (blanket.classList.contains(globals.blanketLinedClass)) {
+                blanket.classList.remove(globals.blanketLinedClass);            
+            } else {
+                blanket.classList.add(globals.blanketLinedClass);
+            }
+        }
     },
     // Use this when including the "Randomize!" button
     handleFormSubmit: function(e) {
@@ -116,7 +134,7 @@ var Form = React.createClass({
     },
     displayResults: function() {
         ReactDOM.render(
-            <Blanket colors={this.state.colors} totalRows={this.state.totalRows} />,
+            <BlanketRender colors={this.state.colors} totalRows={this.state.totalRows} />,
             document.getElementById('blanketContainer')
         );
         ReactDOM.render(
@@ -172,4 +190,7 @@ var Form = React.createClass({
     }
 });
 
+// ----------------
+// Start the show
+// ----------------
 ReactDOM.render(<Form />, document.getElementById('formContainer'));
