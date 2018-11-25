@@ -11,13 +11,30 @@ class RandomObject {
     }
 }
 
+class RandomDepth extends RandomObject {
+    constructor(min, max, remaining) {
+        super();
+        let randomInt = this.getRandomInt(min, max);
+        this.depth = randomInt;
+
+        if (remaining != null & this.depth > remaining) {
+            this.depth = remaining;
+        }
+    }
+}
+
 class RandomColor extends RandomObject {
-    constructor(colors) {
+    constructor(colors, invalidColor) {
         super();
         let min = 1;
         let max = Object.keys(colors).length;
         let randomInt = this.getRandomInt(min, max);
         this.color = colors[randomInt];
+
+        if (invalidColor != null && invalidColor == this.color) {
+            this.color = new RandomColor(colors, invalidColor).color;
+        }
+
     }
 }
 
@@ -26,14 +43,18 @@ class RandomColor extends RandomObject {
 // -------------
 const globals = {
     blanketDivId: "blanket",
+    blanketPreviewContainerDivId: "blanketPreviewContainer",
+    colorContainerDivId: "colorContainer",
+    formContainerDivId: "formContainer",
     blanketLinedClass: "lined",
+    formulaTextareaId: "formula",
     colors: Object.freeze({
-        1: { name: "terracotta", value: "230, 145, 87", textColor: "black", displayName: "Terracotta" },
-        2: { name: "mustard", value: "255, 219, 88", textColor: "black", displayName: "Mustard" },
-        3: { name: "silverblue", value: "201, 217, 229", textColor: "black", displayName: "Silver Blue" },
-        4: { name: "fern", value: "185, 213, 91", textColor: "black", displayName: "Fern" },
-        5: { name: "midnightblue", value: "18, 52, 87", textColor: "white", displayName: "Midnight Blue" },
-        6: { name: "fisherman", value: "243, 237, 215", textColor: "black", displayName: "Fisherman" }
+        1: { name: "terracotta", value: "230, 145, 87", textColor: "black", displayName: "Terracotta", percentage: 16 },
+        2: { name: "mustard", value: "255, 219, 88", textColor: "black", displayName: "Mustard", percentage: 16 },
+        3: { name: "silverblue", value: "201, 217, 229", textColor: "black", displayName: "Silver Blue", percentage: 16 },
+        4: { name: "fern", value: "185, 213, 91", textColor: "black", displayName: "Fern", percentage: 16 },
+        5: { name: "midnightblue", value: "18, 52, 87", textColor: "white", displayName: "Midnight Blue", percentage: 16 },
+        6: { name: "fisherman", value: "243, 237, 215", textColor: "black", displayName: "Fisherman", percentage: 16 }
     })
 };
 
@@ -41,32 +62,82 @@ const globals = {
 // REACT COMPONENTS
 // ----------------
 var BlanketRowRender = React.createClass({
-    render: function() {
-        let randomColor = new RandomColor(this.props.colors);
-        let color = randomColor.color;
-        let className = `blanketRow ` + color.name;
+    render: function() {        
+        let rowColor = this.props.rowColor;
+        let rowClassName = `blanketRow ` + rowColor.name;
         let rowStyle = {
-            backgroundColor: `rgb(` + color.value + `)`,
-            color: color.textColor
+            backgroundColor: `rgb(` + rowColor.value + `)`,
+            color: rowColor.textColor
         };
         return (
-            <div className={className} style={rowStyle}></div>
+            <div className={rowClassName} style={rowStyle}></div>
         )
     }
 })
 
+var BlanketBandRender = React.createClass({
+    render: function() {
+        let depth = this.props.depth;
+        let color = this.props.color;
+        let rows = [];
+
+        let title = color.displayName + " x" + depth;
+        let textarea = document.getElementById(globals.formulaTextareaId);
+
+        for (var i = 0; i < depth; i++) {
+            rows.push(<BlanketRowRender key={i} rowColor={color} />)
+        }
+        
+        textarea.value += title + "\n";
+
+        return (
+            <div className="blanketBand" title={title}>
+                {rows}
+            </div>
+        )
+    }
+});
+
 var BlanketRender = React.createClass({
     render: function() {
-        let blanketRows = [];
+        let colors = this.props.colors;
+        let rowMin = this.props.rowMin;
+        let rowMax = this.props.rowMax;
+        let totalRows = this.props.totalRows;
+        let lastColor = null;
+        let blanketBands = [];
+        let i = 0;
 
-        for (var i = 0; i < this.props.totalRows; i++) {
-            blanketRows.push(<BlanketRowRender key={i} colors={this.props.colors} />);
+        while (i < totalRows) {
+            let randomDepth = new RandomDepth(rowMin, rowMax, totalRows - i);
+            let randomColor = new RandomColor(colors, lastColor);
+            lastColor = randomColor.color;
+
+            blanketBands.push(<BlanketBandRender key={i} color={randomColor.color} depth={randomDepth.depth} />);
+            i = i + randomDepth.depth;
         }
 
         return ( 
             <div id={globals.blanketDivId}>
-                {blanketRows}
+                {blanketBands}
             </div>
+        )
+    }
+});
+
+var ColorListItemRender = React.createClass({
+    getInitialState: function() {
+        return this.props.color;
+    },
+    render: function() {
+        const color = this.state;
+        const style = {
+            backgroundColor: `rgb(` + color.value + `)`,
+            color: color.textColor
+        };
+        const className = 'badge badge-pill ' + color.name;
+        return (
+            <span className={className} style={style}>{color.displayName}</span>
         )
     }
 });
@@ -78,20 +149,13 @@ var ColorList = React.createClass({
         let colorList = [];
         for (var i = 1; i <= numberOfColors; i++ ) {
             const color = colors[i];
-            const className = 'list-group-item small d-flex justify-content-between align-items-center' + color.name;
-            const style = {
-                backgroundColor: `rgb(` + color.value + `)`,
-                color: color.textColor
-            };
-            const textValue = `RGB(` + color.value + `)`;
-            colorList.push(<li key={i} className={className} style={style}>{color.displayName} <span className="badge badge-pill">{textValue}</span></li>);
+            colorList.push(<ColorListItemRender key={i} color={color} />);
         }
-
         return (
-            <ul className="list-group">{colorList}</ul>
+            <div>{colorList}</div>
         )
     }
-})
+});
 
 var Form = React.createClass({
     getInitialState: function() {
@@ -99,7 +163,7 @@ var Form = React.createClass({
             colors: globals.colors,
             rowMin: 1,
             rowMax: 6,
-            totalRows: 50
+            totalRows: 50 
         };
     },
     componentDidMount: function() {
@@ -109,13 +173,19 @@ var Form = React.createClass({
         this.displayResults();
     },
     handleRowMinChange: function(e) {
-        this.setState({rowMin: e.target.value});
+        let selectedMin = e.target.value;
+        if (selectedMin <= this.state.rowMax) {
+            this.setState({ rowMin: selectedMin });
+        }
     },
     handleRowMaxChange: function(e) {
-        this.setState({rowMax: e.target.value});
+        let selectedMax = e.target.value;
+        if (selectedMax >= this.state.rowMin) {
+            this.setState({ rowMax: selectedMax });
+        }
     },
     handleTotalRowsChange: function(e) {        
-        this.setState({totalRows: e.target.value});
+        this.setState({ totalRows: e.target.value });
     },
     handleShowLinesChange: function(e) {
         const blanket = document.getElementById(globals.blanketDivId);    
@@ -127,18 +197,27 @@ var Form = React.createClass({
             }
         }
     },
-    // Use this when including the "Randomize!" button
+    handleCopyClick: function(e) {
+        e.preventDefault();
+        let textarea = document.getElementById(globals.formulaTextareaId);
+        textarea.select();
+        document.execCommand("copy");
+        alert("The blanket pattern has been copied to the clipboard.");
+    },
     handleFormSubmit: function(e) {
+        // RANDOMIZE button will submit the form
         e.preventDefault();
         this.displayResults();
     },
     displayResults: function() {
+        let textarea = document.getElementById(globals.formulaTextareaId);
+        textarea.value = "";
         ReactDOM.render(
-            <BlanketRender colors={this.state.colors} totalRows={this.state.totalRows} />,
-            document.getElementById('blanketContainer')
+            <BlanketRender colors={this.state.colors} totalRows={this.state.totalRows} lastRow={this.state.lastRow} rowMin={this.state.rowMin} rowMax={this.state.rowMax} />,
+            document.getElementById(globals.blanketPreviewContainerDivId)
         );
         ReactDOM.render(
-            <ColorList colors={this.state.colors} />, document.getElementById('colorContainer')
+            <ColorList colors={this.state.colors} />, document.getElementById(globals.colorContainerDivId)
         );
     },
     render: function() {
@@ -147,13 +226,13 @@ var Form = React.createClass({
                 <h6>Actions</h6>
                 <div className="card">
                     <div className="card-body">
-                        <div className="form-group row d-none">
+                        <div className="form-group row">
                             <label htmlFor="rowMin" className="col-7 col-form-label">Smallest Row</label>
                             <div className="col-5">
                                 <input type="number" className="form-control" name="rowMin" min="1" max="6" value={this.state.rowMin} pattern="[0-9]*" inputMode="numeric" onChange={this.handleRowMinChange} />
                             </div>
                         </div>
-                        <div className="form-group row d-none">
+                        <div className="form-group row">
                             <label htmlFor="rowMax" className="col-7 col-form-label">Largest Row</label>
                             <div className="col-5">
                                 <input type="number" className="form-control" name="rowMax" min="1" max="6" value={this.state.rowMax} pattern="[0-9]*" inputMode="numeric" onChange={this.handleRowMaxChange} />
@@ -182,9 +261,13 @@ var Form = React.createClass({
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
                 <h6>Color Key</h6>
-                <div id="colorContainer"></div>                
+                <div className="card">
+                    <div className="card-body" id="colorContainer"></div>
+                </div>               
+                <h6>Pattern <a className="btn btn-outline-primary btn-sm" href="#" role="button" onClick={this.handleCopyClick}>Copy</a></h6>
+                <textarea className="form-control" id="formula" readOnly="readonly"></textarea>             
             </form>
         );
     }
@@ -193,4 +276,4 @@ var Form = React.createClass({
 // ----------------
 // Start the show
 // ----------------
-ReactDOM.render(<Form />, document.getElementById('formContainer'));
+ReactDOM.render(<Form />, document.getElementById(globals.formContainerDivId));
