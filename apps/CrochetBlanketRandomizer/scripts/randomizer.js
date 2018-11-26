@@ -38,6 +38,52 @@ class RandomColor extends RandomObject {
     }
 }
 
+class ClipboardCopier {
+    constructor(targetId) { 
+        this.target = document.getElementById(targetId);
+        this.ios = (/iP(hone|od|ad)/.test(navigator.platform));
+    }
+
+    iOSVersion() {
+        if (this.ios) {
+            // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+            var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+            return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+        }
+    }
+
+    copy = function() {
+        if (this.ios && this.iOSVersion()[0] > 10) {
+            this.iosCopy();
+        } else {
+            this.target.select();
+            document.execCommand("copy");
+            alert("The blanket pattern has been copied to the clipboard.");
+        }
+    }
+
+    iosCopy = function() {
+        const oldContentEditable = this.target.contentEditable;
+        const oldReadOnly = this.target.readOnly;
+        const range = document.createRange();
+
+        this.target.contentEditable = true;
+        this.target.readOnly = false;
+        range.selectNodeContents(this.target);
+
+        const s = window.getSelection();
+        s.removeAllRanges();
+        s.addRange(range);
+
+        this.target.setSelectionRange(0, 999999); // A big number, to cover anything that could be inside the element.
+
+        this.target.contentEditable = oldContentEditable;
+        this.target.readOnly = oldReadOnly;
+
+        document.execCommand('copy');
+    }
+}
+
 // -------------
 // GLOBALS
 // -------------
@@ -173,19 +219,22 @@ var Form = React.createClass({
         this.displayResults();
     },
     handleRowMinChange: function(e) {
-        let selectedMin = e.target.value;
-        if (selectedMin <= this.state.rowMax) {
+        const selectedMin = e.target.value;
+        if (selectedMin > 0 && selectedMin <= this.state.rowMax) {
             this.setState({ rowMin: selectedMin });
         }
     },
     handleRowMaxChange: function(e) {
-        let selectedMax = e.target.value;
-        if (selectedMax >= this.state.rowMin) {
+        const selectedMax = e.target.value;
+        if (selectedMax > 0 && selectedMax >= this.state.rowMin) {
             this.setState({ rowMax: selectedMax });
         }
     },
-    handleTotalRowsChange: function(e) {        
-        this.setState({ totalRows: e.target.value });
+    handleTotalRowsChange: function(e) {
+        const selectedTotalRows = e.target.value;
+        if (selectedTotalRows > 0 && selectedTotalRows > this.state.rowMax) {
+            this.setState({ totalRows: selectedTotalRows });
+        }
     },
     handleShowLinesChange: function(e) {
         const blanket = document.getElementById(globals.blanketDivId);    
@@ -199,10 +248,7 @@ var Form = React.createClass({
     },
     handleCopyClick: function(e) {
         e.preventDefault();
-        let textarea = document.getElementById(globals.formulaTextareaId);
-        textarea.select();
-        document.execCommand("copy");
-        alert("The blanket pattern has been copied to the clipboard.");
+        new ClipboardCopier(globals.formulaTextareaId).copy();
     },
     handleFormSubmit: function(e) {
         // RANDOMIZE button will submit the form
@@ -229,19 +275,19 @@ var Form = React.createClass({
                         <div className="form-group row">
                             <label htmlFor="rowMin" className="col-7 col-form-label">Smallest Row</label>
                             <div className="col-5">
-                                <input type="number" className="form-control" name="rowMin" min="1" max="6" value={this.state.rowMin} pattern="[0-9]*" inputMode="numeric" onChange={this.handleRowMinChange} />
+                                <input type="text" className="form-control" name="rowMin" min="1" max="6" defaultValue={this.state.rowMin} pattern="(\0|[0-9])*" inputMode="numeric" onChange={this.handleRowMinChange} />
                             </div>
                         </div>
                         <div className="form-group row">
                             <label htmlFor="rowMax" className="col-7 col-form-label">Largest Row</label>
                             <div className="col-5">
-                                <input type="number" className="form-control" name="rowMax" min="1" max="6" value={this.state.rowMax} pattern="[0-9]*" inputMode="numeric" onChange={this.handleRowMaxChange} />
+                                <input type="text" className="form-control" name="rowMax" min="1" max="6" defaultValue={this.state.rowMax} pattern="(\0|[0-9])*" inputMode="numeric" onChange={this.handleRowMaxChange} />
                             </div>
                         </div>
                         <div className="form-group row">
                             <label htmlFor="totalRows" className="col-7 col-form-label">Total Rows</label>
                             <div className="col-5">
-                                <input type="number" className="form-control" name="totalRows" min="1" max="100" value={this.state.totalRows} pattern="[0-9]*" inputMode="numeric" onChange={this.handleTotalRowsChange} />
+                                <input type="text" className="form-control" name="totalRows" min="1" max="100" defaultValue={this.state.totalRows} pattern="[0-9]*" inputMode="numeric" onChange={this.handleTotalRowsChange} />
                             </div>
                         </div>
                         <div className="form-group row">
@@ -267,7 +313,7 @@ var Form = React.createClass({
                     <div className="card-body" id="colorContainer"></div>
                 </div>               
                 <h6>Pattern <a className="btn btn-outline-primary btn-sm" href="#" role="button" onClick={this.handleCopyClick}>Copy</a></h6>
-                <textarea className="form-control" id="formula" readOnly="readonly"></textarea>             
+                <textarea className="form-control" id="formula"></textarea>             
             </form>
         );
     }
