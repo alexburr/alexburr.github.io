@@ -232,7 +232,7 @@ var Form = React.createClass({
     },
     handleTotalRowsChange: function(e) {
         const selectedTotalRows = e.target.value;
-        if (selectedTotalRows > 0 && selectedTotalRows > this.state.rowMax) {
+        if (selectedTotalRows > 0) {
             this.setState({ totalRows: selectedTotalRows });
         }
     },
@@ -275,13 +275,13 @@ var Form = React.createClass({
                         <div className="form-group row">
                             <label htmlFor="rowMin" className="col-7 col-form-label">Smallest Row</label>
                             <div className="col-5">
-                                <input type="text" className="form-control" name="rowMin" min="1" max="6" defaultValue={this.state.rowMin} pattern="(\0|[0-9])*" inputMode="numeric" onChange={this.handleRowMinChange} />
+                                <input type="text" className="form-control" name="rowMin" min="1" max="6" defaultValue={this.state.rowMin} pattern="[0-9]*" inputMode="numeric" onChange={this.handleRowMinChange} />
                             </div>
                         </div>
                         <div className="form-group row">
                             <label htmlFor="rowMax" className="col-7 col-form-label">Largest Row</label>
                             <div className="col-5">
-                                <input type="text" className="form-control" name="rowMax" min="1" max="6" defaultValue={this.state.rowMax} pattern="(\0|[0-9])*" inputMode="numeric" onChange={this.handleRowMaxChange} />
+                                <input type="text" className="form-control" name="rowMax" min="1" max="6" defaultValue={this.state.rowMax} pattern="[0-9]*" inputMode="numeric" onChange={this.handleRowMaxChange} />
                             </div>
                         </div>
                         <div className="form-group row">
