@@ -30,6 +30,7 @@
 #showLinesRow { margin: 0; }
 
 #colorContainer .badge { margin-right: 1em; }
+#downloadButton { margin-right: 1em; }
 
 textarea.form-control { 
     font-family: monospace;
