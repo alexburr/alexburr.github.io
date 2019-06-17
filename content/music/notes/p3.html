@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Swing Music "Notes"</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:500,900italic,900,400italic,100,700italic,300,700,500italic,100italic,300italic,400" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+		<link href="notes.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<h1><a href="index.html">&laquo; Swing Music "Notes"</a></h1>
+		<h2>Arrangement: Harmonizing Four Voices/Horns</h2>
+		<section>
+			<h3>Chord Tones</h3>
+			<p>Given a C7 chord, with the following line in the top voice: <code>C  B&flat;  E</code>. Here are some ways to harmonize that line:</p>
+			<p><b>4-way closed:</b> Treat every chord like a 7th chord, and have every voice <span class="highlight">play the next chord tone down from the one above it:</span></p>
+			<div class="harmonizing">
+				<div><code><pre>C  B&flat; E
+B&flat; G  C
+G  E  B&flat;
+E  C  G</pre></code></div>
+				<div><img src="harmonizing/Melody1_4wayClosed.png" /></div>
+			</div>
+			<p><b>Drop-2:</b> Take 4-way closed voicing, and take the <span class="highlight">second note down from the top</span> and <span class="highlight">"drop" it down an octave.</span> In our example we take the notes of the 2nd voice <code>B&flat; G C</code>, and make that the lowest sounding voice, leaving a little space for the top voice:</p>
+			<div class="harmonizing">
+				<div><code><pre>C  B&flat; E
+G  E  B&flat;
+E  C  G
+B&flat; G  C</pre></code></div>
+				<div><img src="harmonizing/Melody1_Drop2.png" /></div>
+			</div>
+			<p><b>Drop 2-4:</b> Take the <span class="highlight">2nd line from the top,</span> and the <span class="highlight">4th line from the top</span> and <span class="highlight">drop them an octave.</span> This moves into the lower register of trombones or bari sax, while still having high notes on the top note of the voicing:</p>
+			<div class="harmonizing">
+				<div><code><pre>C  B&flat; E
+G  E  B&flat;
+B&flat; G  C
+E  C  G</pre></code></div>
+				<div><img src="harmonizing/Melody1_Drop2-4.png" /></div>
+			</div>
+			<h3>Passing Tones</h3>
+			<p>Let's say the chord is an Am7, and the line is <code>E  F  G</code>. It starts and ends on a chord tone, and the middle note is a passing scale degree.</p>
+			<p><span class="highlight">Start by filling out the chord tones:</span></p>
+			<div class="harmonizing">
+				<div><code><pre>E  F  G
+C  -  A
+A  -  C
+G  -  A</pre></code></div>
+				<div><img src="harmonizing/Melody2_Step1.png" /></div>
+			</div>
+			<p>What do we do for that F note? The top line is simply <span class="highlight">following scale-like motion to the next note.</span> Do that for the other voices as well:</p>
+			<div class="harmonizing">
+				<div><code><pre>E  F  G
+C  D  A
+A  B  C
+G  -  A</pre></code></div>
+				<div><img src="harmonizing/Melody2_Step2.png" /></div>
+			</div>
+			<p>For the bottom line, there's no scale degree between the two notes, so go chromatic. This middle chord is a <span class="highlight">fully diminished 7th chord.</span> This provides movement towards the next note, and ensures that all of the voices will <span class="highlight">still have motion in the same direction:</span></p>
+			<div class="harmonizing">
+				<div><code><pre>E  F  G
+C  D  A
+A  B  C
+G  G&sharp; A</pre></code></div>
+				<div><img src="harmonizing/Melody2_Step3.png" /></div>
+			</div>
+			<h3>Extensions</h3>
+			<p>A top voice non-passing, non-chord tone is an upper extension: The 9th, 11th, or 13th of the chord. Treat the upper extension in the top voice as if it were the chord tone directly below it.</p>
+			<p>If the chord is E&flat;maj7, and the top note is an F: The F is the 9th of the chord, and is directly above the root E&flat;. Treat the top note F, as if it were an E&flat;, and go from there:</p>
+			<div class="harmonizing">
+				<div><code><pre>F
+D
+B&flat;
+G</pre></code></div>
+				<div><img src="harmonizing/Extensions1.png" /></div>
+			</div>
+			<p>The 13th replaces the 5th, the 11th replaces the 3rd on major chords (the 11th should be avoided on major chords).</p>
+			<p>Use these extensions on other notes in the chord, not just the top voice. Use them in the same way: they replace the chord tone that falls just under them (9 replaces 1, 11 replaces 3, and 13 replaces 5).</p>
+			<p>Voice a D7 chord with top note F&sharp;, then insert some extensions:</p>
+			<div class="harmonizing">
+				<div><code><pre>F&sharp; <small>&mdash;&mdash;&mdash;3&mdash;&mdash;&mdash;&rarr;</small> F&sharp;
+D  <small>&mdash;&mdash;9&rarr;1&mdash;&rarr;</small> E
+C  <small>&mdash;&mdash;&mdash;7&mdash;&mdash;&mdash;&rarr;</small> C
+A  <small>&mdash;13&rarr;5&mdash;&rarr;</small> B</pre></code></div>
+				<div><img src="harmonizing/Extensions2.png" /></div>
+			</div>
+			<h3>Passing tones in dominant chords <em>(Needs editing and notes)</em></h3>
+			<p>When you encounter a passing tone on a dominant chord, it is best to treat it like an upper extension. In fact, you might find that in order to preserve motion in every part, you might wind up with a stack of notes made up almost entirely of extensions. This works better for dominant chords than the fully diminished 7th tactic.</p>
+			<p>The chord is C7 and the top line is <code>E  F  G</code>:</p>
+			<div class="harmonizing">
+				<div><code><pre>E  F  G
+C  D  E
+B&flat; -  C
+G  A  B&flat;</pre></code></div>
+				<div><img src="" /></div>
+			</div>
+			<p>All but one of the lines is able to mimic the scale-wise motion of the top line. Let's fill that last hole with a chromatic note:</p>
+			<div class="harmonizing">
+				<div><code><pre>E  F  G
+C  D  E
+B&flat; B  C
+G  A  B&flat;</pre></code></div>
+				<div><img src="" /></div>
+			</div>
+			<p>When we do this, we find that we have a half-diminished 7th chord, not a fully diminished 7th chord. Remembering the lesson about passing chords, we might be tempted to change that bottom note A into an A&flat;, to make the passing tone into a fully diminished chord. But this really wouldn't improve the line. It would add a non-diatonic note for no purpose, and change the sound of that passing tone to one outside the chord. Instead, if we think of the top note as an extension, and see where that leads us:</p>
+			<div class="harmonizing">
+				<div><code><pre>E  F  G
+C  D  E
+B&flat; B&flat; C
+G  A  B&flat;</pre></code></div>
+				<div><img src="" /></div>
+			</div>
+			<p>This would work reasonably well. We treat the second note as an 11th, and then deploy a 9th below it, we leave the 7th untouched, and put a 13th on the bottom. This approach means that 3 out of the 4 lines are following the same contour, while one line has a repeated note. The advantage here is that we maintain the sound of the Dominant 7th chord. It's not a passing tone, it's an upper extension.</p>
+			<p>Because dominant chords can have extensions deployed on them all over the place, this approach works better than using a fully diminished passing chord. For most other chords, a fully diminished passing chord arises naturally from the addition of one chromatic note, but not on dominant chords.</p>
+		</section>
+		<h2>Arrangement: Harmonizing Two Voices/Horns</h2>
+		<section>
+			<p>Once the top line is set, try to <span class="highlight">move the bottom line</span> so it is always a <span class="highlight">3rd or 6th away from the top line</span>, but also hits the chord tones.</p>
+			<p>If the two horns are playing pads or hits <span class="highlight">behind some other melody, use the 3rd and 7th of the chord.</span> These are called guide-tones, and will help stabilize the chord progression.</p>
+		</section>
+	</body>
+</html>

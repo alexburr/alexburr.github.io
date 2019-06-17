@@ -1,0 +1,88 @@
+html { background: #e2e2e2; color: #333; font-family: 'Roboto', sans-serif; font-size: 11pt; font-weight: 400; line-height: 1.6; margin: 0; padding: 0; }
+body { background: #fafafa; box-shadow: 0 0 1em silver; margin: 1.5em auto; padding: 1em 1em 2em 1em; width: 88vw; }
+h1, h2, h3 { font-weight: 500; }
+h1 { font-size: 10pt; }
+h2 { border-bottom: 1px dotted #ccc; clear: both; margin-bottom: 0; padding-top: .25em; -moz-transition: color .25s ease; -webkit-transition: color .25s ease; transition: color .25s ease; }
+h3 { clear: both; color: #666; margin-top: 1.6em; }
+body > h1:first-child { margin: 0; }
+a{ -moz-transition: color .25s ease; -webkit-transition: color .25s ease; transition: color .25s ease; }
+a:link, a:visited { color: blue; }
+a:hover { color: #66c; }
+p { padding: 0 1em; }
+img { display: block; max-width: 100%; }
+code { background: #eaeaea; font-size: 13pt; padding: .25em .5em; text-align: left; }
+b { font-weight: 700; }
+section { margin-bottom: 4em; opacity: 1; transition: opacity .25s ease-in-out; -moz-transition: opacity .25s ease-in-out;-webkit-transition: opacity .25s ease-in-out; }
+table { border-collapse: collapse; width: 100%; }
+tr { border-bottom: 1px solid #ccc; }
+th, td { padding: .125em .25em; }
+thead th { color: #666; font-size: 8pt; line-height: 2; }
+tbody th { background-color: #eaeaea; font-weight: 400; font-style: italic; padding: .25em; }
+.small { font-size: smaller; }
+.chords thead th { text-align: left; }
+.chords td:first-child { font-weight: 700; }
+.chords td:nth-child(3) { font-size: 13pt; padding: .25em; }
+.chords td:last-child { font-family: 'Anonymous Pro'; font-size: 13pt; }
+.rhythmChords { float: left; margin-bottom: 2em; overflow: auto; padding: 0; width: 45%; }
+.rhythmChords:nth-of-type(even) { float: right; }
+.rhythmChords > h4 { clear: both; margin: 0 1em; }
+.rhythmChords > div { float: left; margin-bottom: 1em; padding: .5em 0; width: 33%; }
+.rhythmChords > div:nth-child(3n+2) { clear: left; }
+.rhythmChords > div > h5 { color: #666; font-size: 10pt; font-style: italic; font-weight: 400; line-height: 1.5; margin: .5em 0; padding: .25em 0 0 0; text-align: center; }
+.rhythmChords > div > img { margin: 0 auto; max-height: 6em; }
+.chordShapeLegend td { width: 25%; text-align: center; padding: .5em 0; }
+.highlight { background: #FFFFCC; color: #000; padding: 0 .5em; }
+.improvShapeLegend td { text-align: center; width: 25%; }
+.improvShapeLegend.scales { border-top: 1px dotted #ccc; margin-top: 3em; }
+.improvShapeLegend .shape { border: 1px solid black; display: inline-block; height: 1em; line-height: 1; margin-right: .25em; overflow: auto; text-align: center; vertical-align: text-top; width: 1em; }
+.improvShapeLegend .shape.root { background: black; }
+.improvShapeLegend .shape.chordTone { border-radius: 100%; background: black; transform: scale(1.1); }
+.improvShapeLegend .shape.ornament { background: white; border-radius: 100%; transform: scale(.88); }
+/* .improvShapeLegend .shape.addedTone { background: black; transform: rotate(45deg) scale(.9); } */
+.improvShapeLegend .shape.addedTone { border-radius: 100%; background: black; transform: scale(.88); }
+.improvShapes { margin-bottom: 2em; overflow: auto; }
+.improvShapes > div { float: left; width: 33.3%; }
+.improvShapes > div:nth-child(4n+4) { clear: left; }
+/* .improvShapes.scales > div { margin: 0 8.3%; } */
+.improvShapes > div > h5 { color: #666; font-size: 10pt; font-style: italic; font-weight: 400; line-height: 1.5; margin: .5em 0; padding: .25em 0 0 0; text-align: center; }
+.improvShapes > div > img { margin: 0 auto; width: 80%; }
+.harmonizing { margin: 0 auto 2em auto; max-height: 10em; max-width: 50%; overflow: auto; }
+.harmonizing div { float: left; min-height: 10em; width: 50%; }
+.harmonizing div:first-child { background: #eaeaea; text-align: center; }
+.harmonizing code { display: inline-block; margin: .5em auto; }
+.harmonizing pre { margin: 0; }
+.harmonizing pre small { opacity: .5; }
+.harmonizing img { display: block; height: 10em; margin: 0 auto 0 1em; }
+.harmonizing + p { clear: both; }
+/* @media (max-width: 800px) { .improvShapes > div { width: 33%; } } */
+@media print {
+	html, body { background: white; color: black; box-shadow: none; font-size: 9pt; margin: 0; width: 100%; }
+	body { padding: 0; }
+	a:link, a:visited { color: gray; }
+	h1,h2,h3,p { }
+	h1, h2 { margin-top: 0; }
+	h1 { display: none; }
+	h2 { border-bottom: 1pt solid silver; }
+	h3 { color: gray; }
+	code { border: 1pt dotted gray; padding: 0 .25em;}
+	section { transition: none; -webkit-transition: none; page-break-after: always; }
+	table, img { margin: 0 auto; page-break-inside: avoid; }
+	tr { border-bottom: 1pt solid silver; }
+	tbody th { color: gray; }
+	/* .pageBreak { page-break-before: always; } */
+	.sources { display: none; }
+	.chords td:nth-child(3), .chords td:last-child { font-size: 11pt; }
+	.rhythmChords > div { padding: .5em; width: 28%; }
+	.highlight { background: #eee; border: 1pt dotted gray; font-style: italic; padding: 0 .25em; }
+	.highlight b { font-style: normal; }
+	.improvShapeLegend.scales { border-top: 1pt solid silver; }
+	.improvShapeLegend .shape { -webkit-print-color-adjust: exact; }
+	.improvShapes > div { width: 25%; }
+	.improvShapes > div:nth-child(4n+4) { clear: none; }
+	.improvShapes > div:nth-child(5n+5) { clear: left; }
+		/*.improvShapes > div > img { width: 70%; }
+	 .improvShapes > div { width: 33%; } */
+	/* .improvShapes.scales > div { width: 50%; } */
+	.shape.root, .shape.addedTone { background: black !important; }
+	.harmonizing code { margin: 0 auto; }
+}
