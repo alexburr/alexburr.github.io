@@ -85,6 +85,34 @@ h2 {
     font-size: 1em;
   }
 }
+.item h4 {
+  font-size: 1.2em;
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: normal;
+  margin: 0 0 0.5em 0;
+  line-height: 1;
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .item h4 {
+    font-size: 1em;
+  }
+}
+.item h5 {
+  font-size: 0.8em;
+  font-family: "Segoe UI";
+  font-style: italic;
+  font-weight: normal;
+  margin: 0 0 1em 0;
+  line-height: 1;
+  text-align: center;
+}
+@media (max-width: 480px) {
+  .item h5 {
+    font-size: 0.6em;
+  }
+}
 .gridWrap {
   overflow: visible;
   position: relative;
@@ -134,9 +162,26 @@ h2 {
   fill: #373a3c;
   stroke: none;
 }
+.dotBox > .smallDot {
+  fill: #747a7f;
+  stroke: #747a7f;
+  r: 35%;
+}
+@media (max-width: 640px) {
+  .dotBox > .smallDot {
+    r: 50%;
+  }
+}
+.dotBox > .smallDot.empty {
+  fill: white;
+  stroke: #373a3c;
+}
 .dotBox > text {
   font-size: 18pt;
   fill: white;
+}
+.dotBox > text.inverse {
+  fill: #373a3c;
 }
 @media (max-width: 800px) {
   .dotBox > text {
@@ -180,6 +225,9 @@ h2 {
   .dotBox > text.accidental {
     font-size: 6pt;
   }
+}
+.dotBox > text.smallText {
+  font-size: 85%;
 }
 .dotBox.fret1 {
   top: 1%;
