@@ -64,7 +64,7 @@ tbody th { background-color: #eaeaea; font-weight: 400; font-style: italic; padd
 	h1 { display: none; }
 	h2 { border-bottom: 1pt solid silver; }
 	h3 { color: gray; }
-	code { border: 1pt dotted gray; padding: 0 .25em;}
+	code { background: white; border: 1pt dotted gray; padding: 0 .25em;}
 	section { transition: none; -webkit-transition: none; page-break-after: always; }
 	table, img { margin: 0 auto; page-break-inside: avoid; }
 	tr { border-bottom: 1pt solid silver; }
@@ -73,7 +73,7 @@ tbody th { background-color: #eaeaea; font-weight: 400; font-style: italic; padd
 	.sources { display: none; }
 	.chords td:nth-child(3), .chords td:last-child { font-size: 11pt; }
 	.rhythmChords > div { padding: .5em; width: 28%; }
-	.highlight { background: #eee; border: 1pt dotted gray; font-style: italic; padding: 0 .25em; }
+	.highlight { background: white; border: 1pt dotted gray; color: black; font-style: italic; padding: 0 .25em; }
 	.highlight b { font-style: normal; }
 	.improvShapeLegend.scales { border-top: 1pt solid silver; }
 	.improvShapeLegend .shape { -webkit-print-color-adjust: exact; }
@@ -84,5 +84,5 @@ tbody th { background-color: #eaeaea; font-weight: 400; font-style: italic; padd
 	 .improvShapes > div { width: 33%; } */
 	/* .improvShapes.scales > div { width: 50%; } */
 	.shape.root, .shape.addedTone { background: black !important; }
-	.harmonizing code { margin: 0 auto; }
+	.harmonizing code { background: #eaeaea; border: none; margin: 0 auto; }
 }
