@@ -5,35 +5,40 @@ var Accidental;
     Accidental[Accidental["sharp"] = 1] = "sharp";
     Accidental[Accidental["test"] = 2] = "test";
 })(Accidental || (Accidental = {}));
-var Scale = (function () {
-    function Scale(root, notes) {
+class Scale {
+    // ---------------------------
+    constructor(root, notes) {
         this.root = root;
         this.notes = notes;
     }
-    return Scale;
-}());
-var ChordNote = (function () {
-    function ChordNote(scaleDegree, accidental) {
+}
+/// <reference path="accidental.ts" />
+class ChordNote {
+    // ---------------------------
+    constructor(scaleDegree, accidental) {
         this.scaleDegree = scaleDegree;
         this.accidental = accidental;
     }
-    return ChordNote;
-}());
-var ChordType = (function () {
-    function ChordType(name, names, chordNotes, accidental) {
+}
+/// <reference path="chordNote.ts" />
+class ChordType {
+    // ---------------------------
+    constructor(name, names, chordNotes, accidental) {
         this.name = name;
         this.names = names;
         this.chordNotes = chordNotes;
         this.accidental = accidental;
     }
-    return ChordType;
-}());
-var ChordTypes = (function () {
-    function ChordTypes(name, chordTypesArray) {
+}
+/// <reference path="chordType.ts" />
+class ChordTypes {
+    // ---------------------------
+    constructor(name, chordTypesArray) {
         this.groupName = name;
         this.chordTypes = chordTypesArray;
     }
-    ChordTypes.prototype.findTypeByName = function (name) {
+    // ---------------------------
+    findTypeByName(name) {
         var chordType = null;
         for (var i = 0; i < this.chordTypes.length; i++) {
             if (name.toLowerCase() == this.chordTypes[i].name.toLowerCase()) {
@@ -42,14 +47,17 @@ var ChordTypes = (function () {
             }
         }
         return chordType;
-    };
-    return ChordTypes;
-}());
-var ChordTypeGroup = (function () {
-    function ChordTypeGroup(chordTypes) {
+    }
+}
+/// <reference path="chordType.ts" />
+/// <reference path="chordTypes.ts" />
+class ChordTypeGroup {
+    // ---------------------------
+    constructor(chordTypes) {
         this.chordTypes = chordTypes;
     }
-    ChordTypeGroup.prototype.findTypeByName = function (name) {
+    // ---------------------------
+    findTypeByName(name) {
         var chordType = null;
         for (var i = 0; i < this.chordTypes.length; i++) {
             var chordTypeResult = this.chordTypes[i].findTypeByName(name);
@@ -59,15 +67,20 @@ var ChordTypeGroup = (function () {
             }
         }
         return chordType;
-    };
-    return ChordTypeGroup;
-}());
-var Chord = (function () {
-    function Chord(name, chordTypeGroups, scales) {
+    }
+}
+/// <reference path="chordType.ts" />
+/// <reference path="chordTypeGroup.ts" />
+/// <reference path="scale.ts" />
+/// <reference path="chordNote.ts" />
+class Chord {
+    // ---------------------------
+    constructor(name, chordTypeGroups, scales) {
         this.inputName = name;
         this.init(chordTypeGroups, scales);
     }
-    Chord.prototype.outputDisplay = function () {
+    // ---------------------------
+    outputDisplay() {
         var output = "";
         output += "<th class=\"text-xs-center\">" + this.name + "</th>";
         output += "<td>";
@@ -84,15 +97,17 @@ var Chord = (function () {
         }
         output += "</td>";
         return output;
-    };
-    Chord.prototype.init = function (chordTypeGroups, scales) {
+    }
+    // ---------------------------
+    init(chordTypeGroups, scales) {
         this.extractRoot();
         this.extractType(chordTypeGroups);
         this.name = this.root + " " + this.chordType.name;
         this.extractScale(scales);
         this.extractNoteNames();
-    };
-    Chord.prototype.extractRoot = function () {
+    }
+    // ---------------------------
+    extractRoot() {
         var dividerIndex = this.inputName.indexOf(" ");
         if (dividerIndex != 0) {
             this.root = this.inputName.substring(0, dividerIndex);
@@ -100,8 +115,9 @@ var Chord = (function () {
         else {
             this.root = "C";
         }
-    };
-    Chord.prototype.extractType = function (chordTypeGroups) {
+    }
+    // ---------------------------
+    extractType(chordTypeGroups) {
         var nameLength = this.inputName.length;
         var dividerIndex = this.inputName.indexOf(" ");
         if (dividerIndex != 0) {
@@ -111,15 +127,17 @@ var Chord = (function () {
         else {
             this.chordType = chordTypeGroups.findTypeByName("Major");
         }
-    };
-    Chord.prototype.extractScale = function (scales) {
+    }
+    // ---------------------------
+    extractScale(scales) {
         for (var i = 0; i < scales.length; i++) {
             if (this.root == scales[i].root) {
                 this.scale = scales[i];
             }
         }
-    };
-    Chord.prototype.extractNoteNames = function () {
+    }
+    // ---------------------------
+    extractNoteNames() {
         var noteDegrees = [];
         var noteNames = [];
         for (var i = 0; i < this.chordType.chordNotes.length; i++) {
@@ -137,12 +155,14 @@ var Chord = (function () {
             }
         }
         this.noteNames = noteNames;
-    };
-    Chord.prototype.reconcileAccidentalNoteName = function (noteName, accidental) {
+    }
+    // ---------------------------
+    reconcileAccidentalNoteName(noteName, accidental) {
         var noteNameLength = noteName.length;
         var noteIsSharp = (noteName.indexOf("♯") != -1);
         var noteIsFlat = (noteName.indexOf("♭") != -1);
         if (noteNameLength == 1) {
+            // Original note had no accidental, so slap it on
             return noteName + accidental;
         }
         else {
@@ -153,14 +173,16 @@ var Chord = (function () {
                 return noteName + accidental;
             }
         }
-    };
-    return Chord;
-}());
-var Chords = (function () {
-    function Chords(chords) {
+    }
+}
+/// <reference path="chord.ts" />
+class Chords {
+    // ---------------------------
+    constructor(chords) {
         this.chords = chords;
     }
-    Chords.prototype.getChordsForDisplay = function () {
+    // ---------------------------
+    getChordsForDisplay() {
         var output = "<table class=\"table table-hover table-sm text-xs-center\">";
         output += "<thead><tr><th class=\"text-xs-center\">Chord</th><th class=\"text-xs-center\">Names</th><th class=\"text-xs-center\">Notes</th></tr></thead><tbody><tr>";
         for (var i = 0; i < this.chords.length; i++) {
@@ -168,9 +190,14 @@ var Chords = (function () {
         }
         output += "</tr></tbody></table>";
         return output;
-    };
-    return Chords;
-}());
+    }
+}
+/// <reference path="scale.ts" />
+/// <reference path="chordTypeGroup.ts" />
+/// <reference path="chordTypes.ts" />
+/// <reference path="chordType.ts" />
+/// <reference path="chordNote.ts" />
+/// <reference path="accidental.ts" />
 var scales = [
     new Scale("C", ["C", "D", "E", "F", "G", "A", "B"]),
     new Scale("D♭", ["D♭", "E♭", "F", "G♭", "A♭", "B♭", "C"]),
@@ -236,7 +263,7 @@ var chordTypeGroups = new ChordTypeGroup([
             new ChordNote(1, Accidental.natural),
             new ChordNote(3, Accidental.flat),
             new ChordNote(5, Accidental.flat),
-            new ChordNote(6, Accidental.natural)
+            new ChordNote(6, Accidental.natural) // fix this for double-flat?
         ], null),
         new ChordType("Half-Diminished 7th", ["<sup>ø</sup>", "<sup>ø</sup>7", "min7♭5", "m7♭5"], [
             new ChordNote(1, Accidental.natural),
@@ -269,7 +296,11 @@ var chordTypeGroups = new ChordTypeGroup([
         ], null)
     ])
 ]);
-window.onload = function () {
+/// <reference path="scale.ts" />
+/// <reference path="chords.ts" />
+/// <reference path="chord.ts" />
+/// <reference path="vars.ts" />
+window.onload = () => {
     var chordRootSelect = document.getElementById("chordRoot");
     var chordTypeSelect = document.getElementById("chordType");
     for (var i = 0; i < scales.length; i++) {
@@ -300,12 +331,11 @@ window.onload = function () {
         document.getElementById("output").innerHTML = output;
     }, false);
 };
-var Note = (function () {
-    function Note(name, halfStepsFromRoot, scaleDegree) {
+class Note {
+    // ---------------------------
+    constructor(name, halfStepsFromRoot, scaleDegree) {
         this.name = name;
         this.halfStepsFromRoot = halfStepsFromRoot;
         this.scaleDegree = scaleDegree;
     }
-    return Note;
-}());
-//# sourceMappingURL=app.js.map
+}
