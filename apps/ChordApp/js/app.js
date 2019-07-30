@@ -69,10 +69,17 @@ class ChordTypeGroup {
         return chordType;
     }
 }
+const FLAT = "♭";
+const SHARP = "♯";
+const DOUBLESHARP = "𝄪";
+const DOUBLEFLAT = "𝄫";
+const DEFAULTROOT = "C";
+const DEFAULTTYPE = "Major";
 /// <reference path="chordType.ts" />
 /// <reference path="chordTypeGroup.ts" />
 /// <reference path="scale.ts" />
 /// <reference path="chordNote.ts" />
+/// <reference path="stringConstants.ts" />
 class Chord {
     // ---------------------------
     constructor(name, chordTypeGroups, scales) {
@@ -113,7 +120,7 @@ class Chord {
             this.root = this.inputName.substring(0, dividerIndex);
         }
         else {
-            this.root = "C";
+            this.root = DEFAULTROOT;
         }
     }
     // ---------------------------
@@ -125,7 +132,7 @@ class Chord {
             this.chordType = chordTypeGroups.findTypeByName(chordTypeSubstr);
         }
         else {
-            this.chordType = chordTypeGroups.findTypeByName("Major");
+            this.chordType = chordTypeGroups.findTypeByName(DEFAULTTYPE);
         }
     }
     // ---------------------------
@@ -145,10 +152,10 @@ class Chord {
             var chordNoteScaleIndex = chordNote.scaleDegree;
             var noteName = this.scale.notes[chordNoteScaleIndex - 1];
             if (chordNote.accidental == Accidental.flat) {
-                noteNames.push(this.reconcileAccidentalNoteName(noteName, "♭"));
+                noteNames.push(this.reconcileAccidentalNoteName(noteName, FLAT));
             }
             else if (chordNote.accidental == Accidental.sharp) {
-                noteNames.push(this.reconcileAccidentalNoteName(noteName, "♯"));
+                noteNames.push(this.reconcileAccidentalNoteName(noteName, SHARP));
             }
             else {
                 noteNames.push(noteName);
@@ -159,19 +166,48 @@ class Chord {
     // ---------------------------
     reconcileAccidentalNoteName(noteName, accidental) {
         var noteNameLength = noteName.length;
-        var noteIsSharp = (noteName.indexOf("♯") != -1);
-        var noteIsFlat = (noteName.indexOf("♭") != -1);
+        var noteIsSharp = (noteName.indexOf(SHARP) != -1);
+        var noteIsDoubleSharp = (noteName.indexOf(DOUBLESHARP) != -1);
+        var noteIsFlat = (noteName.indexOf(FLAT) != -1);
+        var noteIsDoubleFlat = (noteName.indexOf(DOUBLEFLAT) != -1);
+        var baseNoteName = noteName.slice(0, 1);
+        var returnString = `${noteName}${accidental}`;
         if (noteNameLength == 1) {
             // Original note had no accidental, so slap it on
-            return noteName + accidental;
+            return returnString;
         }
         else {
-            if ((noteIsSharp && accidental == "♭") || (noteIsFlat && accidental == "♯")) {
-                return noteName.slice(0, 1);
+            switch (accidental) {
+                case FLAT:
+                    if (noteIsSharp)
+                        returnString = `${baseNoteName}`;
+                    if (noteIsFlat)
+                        returnString = `${baseNoteName}${DOUBLEFLAT}`;
+                    if (noteIsDoubleSharp)
+                        returnString = `${baseNoteName}${SHARP}`;
+                    break;
+                case SHARP:
+                    if (noteIsFlat)
+                        returnString = `${baseNoteName}`;
+                    if (noteIsSharp)
+                        returnString = `${baseNoteName}${DOUBLESHARP}`;
+                    if (noteIsDoubleFlat)
+                        returnString = `${baseNoteName}${FLAT}`;
+                    break;
+                case DOUBLEFLAT:
+                    if (noteIsSharp)
+                        returnString = `${baseNoteName}${FLAT}`;
+                    if (noteIsDoubleSharp)
+                        returnString = `${baseNoteName}`;
+                    break;
+                case DOUBLESHARP:
+                    if (noteIsFlat)
+                        returnString = `${baseNoteName}${SHARP}`;
+                    if (noteIsDoubleFlat)
+                        returnString = `${baseNoteName}`;
+                    break;
             }
-            else {
-                return noteName + accidental;
-            }
+            return returnString;
         }
     }
 }
@@ -200,25 +236,34 @@ class Chords {
 /// <reference path="accidental.ts" />
 var scales = [
     new Scale("C", ["C", "D", "E", "F", "G", "A", "B"]),
+    new Scale("C♯", ["C♯", "D♯", "E♯", "F♯", "G♯", "A♯", "B♯"]),
     new Scale("D♭", ["D♭", "E♭", "F", "G♭", "A♭", "B♭", "C"]),
     new Scale("D", ["D", "E", "F♯", "G", "A", "B", "C♯"]),
+    new Scale("D♯", ["D♯", "E♯", "F𝄪", "G♯", "A♯", "B♯", "C𝄪"]),
     new Scale("E♭", ["E♭", "F", "G", "A♭", "B♭", "C", "D"]),
     new Scale("E", ["E", "F♯", "G♯", "A", "B", "C♯", "D♯"]),
+    new Scale("E♯", ["E♯", "F𝄪", "G𝄪", "A♯", "B♯", "C𝄪", "D𝄪"]),
     new Scale("F", ["F", "G", "A", "B♭", "C", "D", "E"]),
+    new Scale("F♯", ["F♯", "G♯", "A♯", "B", "C♯", "D♯", "E♯"]),
+    new Scale("G♭", ["G♭", "A♭", "B♭", "C♭", "D♭", "E♭", "F"]),
     new Scale("G", ["G", "A", "B", "C", "D", "E", "F♯"]),
+    new Scale("G♯", ["G♯", "A♯", "B♯", "C♯", "D♯", "E♯", "F𝄪"]),
     new Scale("A♭", ["A♭", "B♭", "C", "D♭", "E♭", "F", "G"]),
     new Scale("A", ["A", "B", "C♯", "D", "E", "F♯", "G♯"]),
+    new Scale("A♯", ["A♯", "B♯", "C𝄪", "D♯", "E♯", "F𝄪", "G𝄪"]),
     new Scale("B♭", ["B♭", "C", "D", "E♭", "F", "G", "A"]),
-    new Scale("B", ["B", "C♯", "D♯", "E", "F", "G♯", "A♯"])
+    new Scale("B", ["B", "C♯", "D♯", "E", "F", "G♯", "A♯"]),
+    new Scale("B♯", ["B♯", "C𝄪", "D𝄪", "E♯", "F♯", "G𝄪", "A𝄪"]),
+    new Scale("C♭", ["C♭", "D♭", "E♭", "F♭", "G♭", "A♭", "B♭"]),
 ];
 var chordTypeGroups = new ChordTypeGroup([
     new ChordTypes("Triads", [
-        new ChordType("Major", ["", "maj", "Maj", "M", "△"], [
+        new ChordType("Major", ["", "maj", "Maj", "M", "Ma", "ma", "△"], [
             new ChordNote(1, Accidental.natural),
             new ChordNote(3, Accidental.natural),
             new ChordNote(5, Accidental.natural)
         ], null),
-        new ChordType("Minor", ["min", "m", "-"], [
+        new ChordType("Minor", ["min", "Min", "m", "Mi", "mi", "-"], [
             new ChordNote(1, Accidental.natural),
             new ChordNote(3, Accidental.flat),
             new ChordNote(5, Accidental.natural)
@@ -241,13 +286,13 @@ var chordTypeGroups = new ChordTypeGroup([
             new ChordNote(5, Accidental.natural),
             new ChordNote(7, Accidental.flat)
         ], null),
-        new ChordType("Major 7th", ["Maj7", "maj7", "△7"], [
+        new ChordType("Major 7th", ["maj7", "Maj7", "M7", "Ma7", "ma7", "△7"], [
             new ChordNote(1, Accidental.natural),
             new ChordNote(3, Accidental.natural),
             new ChordNote(5, Accidental.natural),
             new ChordNote(7, Accidental.natural)
         ], null),
-        new ChordType("Minor 7th", ["min7", "m7", "-7"], [
+        new ChordType("Minor 7th", ["min7", "m7", "Mi7", "mi7", "-7"], [
             new ChordNote(1, Accidental.natural),
             new ChordNote(3, Accidental.flat),
             new ChordNote(5, Accidental.natural),
