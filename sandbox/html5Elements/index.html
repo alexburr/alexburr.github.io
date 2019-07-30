@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-US" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<link href="//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700" rel="stylesheet" />
+		<style>
+			html,body { background-color: #f0f0f0; color: #444; font-family: "Open Sans",sans-serif; font-size: 10pt; margin: 0; padding: 0 1em; }
+			button { color: #333; cursor: pointer; transition: all 0.2s ease; }
+			button:focus, input:focus, select:focus, textarea:focus { outline: none; }
+			menu { padding: 0; }
+			textarea { resize: none; }
+			dialog { background: #e2e2e2; border: none; box-shadow: 0 0 1em gray; color: #444; max-width: 90vw; padding: 0; }
+			dialog::backdrop { background: rgba(0,0,0,0.5); }
+			dialog > h2 { background: #ccc; font-size: 110%; line-height: 2; margin: 0; padding: 0; text-indent: 1em; }
+			dialog > h2 > button { background: transparent; border: none; float: right; font-weight: bold; line-height: 2.1; }
+			dialog > h2 > button:hover { background: #bbb; }
+			dialog form { margin: 1.5em 1em; padding: 0; }
+			dialog form section > p:first-child { margin-top: 0; }
+			dialog form > menu { margin: 2em 0 0 0; padding: 0; text-align: center; }
+			dialog form > menu > button { font-size: 110%; padding: .25em .5em; }
+			#cancel { background: #ccc; border: 2px solid #ccc; margin-right: 1em; }
+			#cancel:hover { background: #bbb; border-color: #bbb; }
+		</style>
+	</head>
+	<body>
+		<h1>Test</h1>
+		<!-- Simple pop-up dialog box, containing a form. Original source: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog -->
+		<dialog id="favDialog">
+			<h2>Dialog <button id="dismiss">X</button></h2>
+			<form id="dialogForm" method="dialog">
+				<section>
+					<p>
+						<label for="favAnimal">Favorite animal:</label>
+						<select id="favAnimal" name="favAnimal">
+							<option>Brine shrimp</option>
+							<option>Red panda</option>
+							<option>Spider monkey</option>
+						</select>
+					</p>
+					<h2 id="Summary" name="Summary">Summary</h2>
+					<p>The <strong>HTML <code>&lt;dialog&gt;</code> element</strong> represents a dialog box or other interactive component, such as an inspector or window. <code>&lt;form&gt;</code> elements can be integrated within a dialog by specifying them with the attribute <code>method="dialog"</code>. When such a form is submitted, the dialog is closed with a <code>returnValue</code> attribute set to the <code>value</code> of the submit button used.</p>
+					<p>The <a href="/en-US/docs/Web/CSS/::backdrop" title="Each element in the top layer's stack has a ::backdrop pseudo-element. This pseudo-element is a box rendered immediately below the element (and above the element below the element in the stack, if any), within the same top layer."><code>::backdrop</code></a> CSS pseudo-element can be used to style behind a <code>&lt;dialog&gt;</code> element, for example to dim inaccessible content whilst a modal dialog is active.</p>
+					<ul class="htmlelt">
+						<li><dfn><a href="/en-US/docs/HTML/Content_categories" title="HTML/Content_categories">Content categories</a></dfn> <a href="/en-US/docs/HTML/Content_categories#Flow_content" title="HTML/Content categories#Flow content">Flow content</a>, <a href="/en-US/docs/Web/HTML/Sections_and_Outlines_of_an_HTML5_document#Sectioning_roots">sectioning root</a></li>
+						<li><dfn>Permitted content</dfn> <a href="/en-US/docs/HTML/Content_categories#Flow_content" title="HTML/Content categories#Flow content">Flow content</a></li>
+						<li><dfn>Tag omission</dfn> None, both the starting and ending tag are mandatory.</li>
+						<li><dfn>Permitted parent elements</dfn> Any element that accepts <a href="/en-US/docs/HTML/Content_categories#Flow_content" title="HTML/Content categories#Flow content">flow content</a></li>
+						<li><dfn>DOM interface</dfn> <a href="/en-US/docs/Web/API/HTMLDialogElement" title="The HTMLDialogElement interface provides methods to manipulate &lt;dialog> elements. It inherits properties and methods from the HTMLElement interface."><code>HTMLDialogElement</code></a></li>
+					</ul>
+					<h2 id="Attributes" name="Attributes">Attributes</h2>
+					<p>This element includes the <a href="/en-US/docs/HTML/Global_attributes" title="HTML/Global attributes">global attributes</a>. The <code>tabindex</code> attribute must not be used on the <code>&lt;dialog&gt;</code> element.</p>
+				</section>
+				<menu>
+					<button id="cancel" type="reset">Cancel</button>
+					<button type="submit">Confirm</button>
+				</menu>
+			</form>
+		</dialog>
+	<menu>
+		<button id="openDialog">Open dialog</button>
+	</menu>
+	<textarea id="result" readonly="readonly"></textarea>
+	<script>
+		(function() {
+			var dialog = document.getElementById('favDialog');
+			var form = document.getElementById('dialogForm');
+			var result = document.getElementById('result');
+			var cancelButton = document.getElementById('cancel');
+			var dismissButton = document.getElementById('dismiss');
+			var updateButton = document.getElementById('openDialog');
+			
+			// Update button opens a modal dialog
+			updateButton.addEventListener('click', function() {
+				dialog.showModal();
+			});
+
+			// Form cancel button closes the dialog box
+			cancelButton.addEventListener('click', function() {
+				dialog.close();
+			});
+			
+			// Form cancel button closes the dialog box
+			dismissButton.addEventListener('click', function() {
+				dialog.close();
+			});
+			
+			// Form submit event
+			form.onsubmit = function() {
+				result.textContent = form.elements[0].value;
+			};
+		})();
+	</script>
+	</body>
+</html>

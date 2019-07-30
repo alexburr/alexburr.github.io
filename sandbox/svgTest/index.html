@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<title>SVG Test</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700" rel="stylesheet" />
+		<style>
+			body { background: #343D46; color: #65737e; font-family: "Open Sans", sans-serif; padding: 1em; }
+			h1 { font-weight: 400; margin: 0; }
+			#buttons { width: 600px; }
+			button { background: #65737E; border: none; color: #EFF1F5; font-family: "Open Sans", sans-serif; padding: .25em .66em; transition: all 0.1s ease; }
+				/*button:last-child { float: right; }*/
+				#stop { display: none; }
+				button:hover { background: #A7ADBA; cursor: pointer; }
+				button:focus { outline: none; }
+				button.disabled { opacity: .6; }
+					button.disabled:hover { background: #65737E; cursor: auto; }
+			.block { background: #2b303b; float: left; height: 200px; width: 200px; }
+			.smBlock { display: none; float: left; height: 100px; width: 100px; }
+		</style>
+	</head>
+	<body>
+		<h1>SVG Test</h1>
+		<p id="buttons">
+			<button class="disabled" id="start" disabled="disabled">Draw</button>
+			<button id="stop">Erase</button>
+		</p>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="jquery.svg/jquery.svg.min.js"></script>
+		<script>
+			var shapeColors = ['#BF616A','#EBCB8B','#96B5B4'];
+			var randMin = 0;
+			var randMax = 2;
+			
+			function getRandom() {
+				return Math.floor(Math.random() * (randMax - randMin + 1)) + randMin;
+			}
+			
+			function getShapeColor() {
+				return shapeColors[getRandom()];
+			}
+		
+			function drawContainers() {
+				for (i=0; i<3; i++) {
+					var block = $("<div class=\"block\"></div");
+					for (j=0; j<4; j++) {
+						var smBlock = $("<div class=\"smBlock\"></div>");
+						block.append(smBlock);
+					}
+					$("body").append(block);
+				}
+			}
+			
+			function enableButtons() {
+				var startButton = $("#start");
+				var stopButton = $("#stop");
+				
+				startButton.removeAttr("class").removeAttr("disabled");
+				
+				startButton.click(function() { 
+					$(this).toggle();
+					stopButton.toggle();
+					var smBlock = $(".smBlock");
+					smBlock.each(function(index) {
+						$(this).svg({onLoad: drawShape}).fadeToggle();
+					});
+				});
+				stopButton.click(function() { 
+					$(this).toggle();
+					startButton.toggle();
+					var smBlock = $(".smBlock");
+					smBlock.fadeToggle().svg("destroy");
+				});
+			}
+			
+			function drawShape(svg) {
+				var randInt = getRandom();
+				switch(randInt) {
+					case 0:
+						svg.rect(2, 2, 96, 96, 0, 0, { fill: getShapeColor() });
+						break;
+					case 1:
+						svg.polygon([[50,2], [0,98], [98,98]], { fill: getShapeColor() });
+						break;
+					case 2:
+						svg.circle(50, 50, 48, { fill: getShapeColor() });
+						break;
+					default:
+						console.log('Error');
+				}
+				
+			}
+			
+			$("document").ready(function() {
+				drawContainers();
+				enableButtons();
+			});
+		</script>
+	</body>
+</html>

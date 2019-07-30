@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="css/styles.css" />
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="background"></div>
+		<h1>CSS transition effects</h1>
+		<p>All spins, zooms and slides are handled with CSS transforms and transitions. jQuery is used only for event binding and CSS class toggling.</p>
+		<p><em>NOTE: Hovering a button will cancel the current effect.</em></p>
+		<hr />
+		<section class="actionButtons">
+			<button id="buttonSpin" data-target="#fadeBox"><i class="fa fa-eye-slash"></i> Fade</button>
+			<button id="buttonSpin" data-target="#spinBox"><i class="fa fa-undo"></i> Spin</button>
+			<button id="buttonScale" data-target="#scaleBox"><i class="fa fa-arrows-alt"></i> Scale</button>
+			<button id="buttonScale" data-target="#slideBox"><i class="fa fa-arrow-left"></i> Slide</button>
+			<button id="buttonSkew" data-target="#skewBox"><i class="fa fa-step-backward"></i> Skew</button>
+			<button id="buttonSkew" data-target="#flipBox"><i class="fa fa-share fa-rotate-90"></i> Flip</button>
+		</section>
+		<div id="overlay"> </div>
+		<!-- Fade box -->
+		<div class="box" id="fadeBox">
+			<div class="boxWrap">
+				<h1>Fade</h1>
+				<div class="boxContent">
+					<p>Cut the cheese jarlsberg manchego. Stilton everyone loves fromage frais cream cheese danish fontina babybel cheese on toast babybel. Cheesy grin cheese slices cheesy grin squirty cheese fromage monterey jack chalk and cheese st. agur blue cheese. Brie cheesecake cheesecake brie paneer brie edam chalk and cheese. Caerphilly.</p>
+					<p>When the cheese comes out everybody's happy jarlsberg airedale. Squirty cheese taleggio st. agur blue cheese gouda everyone loves chalk and cheese chalk and cheese stinking bishop. Feta cheese slices cut the cheese brie jarlsberg macaroni cheese rubber cheese hard cheese. Caerphilly manchego boursin airedale caerphilly st. agur blue cheese bocconcini cheese on toast. Who moved my cheese.</p>
+					<ul>
+						<li>Monterey jack chalk and cheese taleggio.</li>
+						<li>Swiss mozzarella cheese and wine camembert de normandie queso macaroni cheese squirty cheese taleggio.</li>
+						<li>Ricotta monterey jack parmesan mascarpone monterey jack lancashire who moved my cheese dolcelatte.</li>
+					</ul>					
+				</div>
+				<section class="actionButtons"><button class="ok" data-target="#fadeBox"><i class="icon-ok"></i> OK</button></section>
+			</div>
+		</div>
+		<!-- Spin box -->
+		<div class="box spin" id="spinBox">
+			<div class="boxWrap">
+				<h1>Spin</h1>
+				<div class="boxContent">
+					<p>Cut the cheese jarlsberg manchego. Stilton everyone loves fromage frais cream cheese danish fontina babybel cheese on toast babybel. Cheesy grin cheese slices cheesy grin squirty cheese fromage monterey jack chalk and cheese st. agur blue cheese. Brie cheesecake cheesecake brie paneer brie edam chalk and cheese. Caerphilly.</p>
+					<p>When the cheese comes out everybody's happy jarlsberg airedale. Squirty cheese taleggio st. agur blue cheese gouda everyone loves chalk and cheese chalk and cheese stinking bishop. Feta cheese slices cut the cheese brie jarlsberg macaroni cheese rubber cheese hard cheese. Caerphilly manchego boursin airedale caerphilly st. agur blue cheese bocconcini cheese on toast. Who moved my cheese.</p>
+					<ul>
+						<li>Monterey jack chalk and cheese taleggio.</li>
+						<li>Swiss mozzarella cheese and wine camembert de normandie queso macaroni cheese squirty cheese taleggio.</li>
+						<li>Ricotta monterey jack parmesan mascarpone monterey jack lancashire who moved my cheese dolcelatte.</li>
+					</ul>					
+				</div>
+				<section class="actionButtons"><button class="ok" data-target="#scaleBox"><i class="icon-ok"></i> OK</button></section>
+			</div>
+		</div>
+		<!-- Scale box -->
+		<div class="box scale" id="scaleBox">
+			<div class="boxWrap">
+				<h1>Scale</h1>
+				<div class="boxContent">
+					<p>Cut the cheese jarlsberg manchego. Stilton everyone loves fromage frais cream cheese danish fontina babybel cheese on toast babybel. Cheesy grin cheese slices cheesy grin squirty cheese fromage monterey jack chalk and cheese st. agur blue cheese. Brie cheesecake cheesecake brie paneer brie edam chalk and cheese. Caerphilly.</p>
+					<p>When the cheese comes out everybody's happy jarlsberg airedale. Squirty cheese taleggio st. agur blue cheese gouda everyone loves chalk and cheese chalk and cheese stinking bishop. Feta cheese slices cut the cheese brie jarlsberg macaroni cheese rubber cheese hard cheese. Caerphilly manchego boursin airedale caerphilly st. agur blue cheese bocconcini cheese on toast. Who moved my cheese.</p>
+					<ul>
+						<li>Monterey jack chalk and cheese taleggio.</li>
+						<li>Swiss mozzarella cheese and wine camembert de normandie queso macaroni cheese squirty cheese taleggio. </li>
+						<li>Ricotta monterey jack parmesan mascarpone monterey jack lancashire who moved my cheese dolcelatte.</li>
+					</ul>
+				</div>
+				<section class="actionButtons"><button class="ok" data-target="#scaleBox"><i class="icon-ok"></i> OK</button></section>
+			</div>
+		</div>
+		<!-- Slide box -->
+		<div class="box slide" id="slideBox">
+			<div class="boxWrap">
+				<h1>Slide</h1>
+				<div class="boxContent">
+					<p>cut the cheese jarlsberg manchego. stilton everyone loves fromage frais cream cheese danish fontina babybel cheese on toast babybel. cheesy grin cheese slices cheesy grin squirty cheese fromage monterey jack chalk and cheese st. agur blue cheese. brie cheesecake cheesecake brie paneer brie edam chalk and cheese. caerphilly.</p>
+					<p>when the cheese comes out everybody's happy jarlsberg airedale. squirty cheese taleggio st. agur blue cheese gouda everyone loves chalk and cheese chalk and cheese stinking bishop. feta cheese slices cut the cheese brie jarlsberg macaroni cheese rubber cheese hard cheese. caerphilly manchego boursin airedale caerphilly st. agur blue cheese bocconcini cheese on toast. who moved my cheese.</p>
+					<ul>
+						<li>monterey jack chalk and cheese taleggio.</li>
+						<li>swiss mozzarella cheese and wine camembert de normandie queso macaroni cheese squirty cheese taleggio. </li>
+						<li>ricotta monterey jack parmesan mascarpone monterey jack lancashire who moved my cheese dolcelatte.</li>
+					</ul>
+				</div>
+				<section class="actionButtons"><button class="ok" data-target="#scaleBox"><i class="icon-ok"></i> OK</button></section>
+			</div>
+		</div>
+		<!-- Skew box -->
+		<div class="box skew" id="skewBox">
+			<div class="boxWrap">
+				<h1>Skew</h1>
+				<div class="boxContent">
+					<p>cut the cheese jarlsberg manchego. stilton everyone loves fromage frais cream cheese danish fontina babybel cheese on toast babybel. cheesy grin cheese slices cheesy grin squirty cheese fromage monterey jack chalk and cheese st. agur blue cheese. brie cheesecake cheesecake brie paneer brie edam chalk and cheese. caerphilly.</p>
+					<p>when the cheese comes out everybody's happy jarlsberg airedale. squirty cheese taleggio st. agur blue cheese gouda everyone loves chalk and cheese chalk and cheese stinking bishop. feta cheese slices cut the cheese brie jarlsberg macaroni cheese rubber cheese hard cheese. caerphilly manchego boursin airedale caerphilly st. agur blue cheese bocconcini cheese on toast. who moved my cheese.</p>
+					<ul>
+						<li>monterey jack chalk and cheese taleggio.</li>
+						<li>swiss mozzarella cheese and wine camembert de normandie queso macaroni cheese squirty cheese taleggio. </li>
+						<li>ricotta monterey jack parmesan mascarpone monterey jack lancashire who moved my cheese dolcelatte.</li>
+					</ul>
+				</div>
+				<section class="actionButtons"><button class="ok" data-target="#skewBox"><i class="icon-ok"></i> OK</button></section>
+			</div>
+		</div>
+		<!-- Flip box -->
+		<div class="box flip" id="flipBox">
+			<div class="boxWrap">
+				<h1>Flip</h1>
+				<div class="boxContent">
+					<p>cut the cheese jarlsberg manchego. stilton everyone loves fromage frais cream cheese danish fontina babybel cheese on toast babybel. cheesy grin cheese slices cheesy grin squirty cheese fromage monterey jack chalk and cheese st. agur blue cheese. brie cheesecake cheesecake brie paneer brie edam chalk and cheese. caerphilly.</p>
+					<p>when the cheese comes out everybody's happy jarlsberg airedale. squirty cheese taleggio st. agur blue cheese gouda everyone loves chalk and cheese chalk and cheese stinking bishop. feta cheese slices cut the cheese brie jarlsberg macaroni cheese rubber cheese hard cheese. caerphilly manchego boursin airedale caerphilly st. agur blue cheese bocconcini cheese on toast. who moved my cheese.</p>
+					<ul>
+						<li>monterey jack chalk and cheese taleggio.</li>
+						<li>swiss mozzarella cheese and wine camembert de normandie queso macaroni cheese squirty cheese taleggio. </li>
+						<li>ricotta monterey jack parmesan mascarpone monterey jack lancashire who moved my cheese dolcelatte.</li>
+					</ul>
+				</div>
+				<section class="actionButtons"><button class="ok" data-target="#skewBox"><i class="icon-ok"></i> OK</button></section>
+			</div>
+		</div>
+		
+	</body>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="js/scripts.js"></script>
+</html>

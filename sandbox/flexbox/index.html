@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />		
+		<title></title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700" rel="stylesheet" />
+		<style>
+			body { color: #444; font-family: 'Open Sans',sans-serif; font-size: 100%; margin: 0; padding: 2em; }
+			
+			#example1 
+			{
+				padding: 1em;
+			}
+				#example1 > div 
+				{ 
+					background-color: #f0f0f0;
+					border: 1px solid #ccc;
+					border-radius: .25em;
+					box-shadow: 0 0 .25em rgba(0,0,0,0.125);
+					padding: 1em;
+				}
+					#example1 > div > h1 { font-weight: 400; margin: 0; }
+			
+			.flex1
+			{ 
+				display: flex; 				/* Make it a flex container */
+				flex-flow: row nowrap; 		/* Main axis is horizontal */
+				justify-content: center;	/* When main axis is horizontal, justify-content will move items to left and right */
+			}
+				.flex1 > div
+				{
+					display: flex;
+					flex-flow: column nowrap;
+					align-items: center;
+				}					
+					.flex1 > div:nth-child(2){ margin: 0 .5em; }
+		</style>
+	</head>
+	<body>
+		<button id="button1">Apply Flexbox</button>
+		<div id="example1">			
+			<div id="div1">
+				<h1>1</h1>
+			</div>
+			<div id="div2">
+				<h1>2</h1>
+			</div>
+			<div id="div3">
+				<h1>3</h1>
+			</div>
+		</div>
+		<p>Source: <a href="http://www.sketchingwithcss.com/samplechapter/">http://www.sketchingwithcss.com/samplechapter/</a></p>
+		
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				
+				$('#button1').click(function() { $('#example1').toggleClass('flex1'); });
+				
+			});
+		</script>
+	</body>
+</html>

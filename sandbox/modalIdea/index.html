@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<link href="http://fonts.googleapis.com/css?family=Roboto:500,900italic,900,400italic,100,700italic,300,700,500italic,100italic,300italic,400" rel="stylesheet" type="text/css" />
+<link href="app.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="mainPage">
+		<h1>Content</h1>
+		<p>As we design for <a href="http://www.nngroup.com/articles/responsive-web-design-definition/">different screen sizes and dimensions</a>, it is common to focus on the smallest of screens. We need our designs and interactive elements to fit and work on small screen devices, such as phones and watches. Many teams focus on resizing and optimizing menus, interactions, content, and experiences to work well on these small devices.</p>
+		<p>Modal 1: 
+			<button class="openModal" data-content-id="modalContent1" data-size="Large">Large</button>
+			<button class="openModal" data-content-id="modalContent1" data-size="Medium">Medium</button>
+			<button class="openModal" data-content-id="modalContent1" data-size="Small">Small</button>
+		</p>
+		<p>Modal 2:
+			<button class="openModal" data-content-id="modalContent2" data-size="Large">Large</button>
+			<button class="openModal" data-content-id="modalContent2" data-size="Medium">Medium</button>
+			<button class="openModal" data-content-id="modalContent2" data-size="Small">Small</button>
+		</p>
+		<p>Modal 3:
+			<button class="openModal" data-content-id="modalContent3" data-size="Large">Large</button>
+			<button class="openModal" data-content-id="modalContent3" data-size="Medium">Medium</button>
+			<button class="openModal" data-content-id="modalContent3" data-size="Small">Small</button>
+		</p>
+		<p>However, other screens are increasing in size and becoming touch-enabled. Some laptop and desktop monitors are touch-enabled. Larger tablets, such as the <a href="http://www.amazon.com/dp/B00OR29TAY?tag=useitcomusablein">Nabi Big Tab</a> with a <strong>24-inch touchscreen</strong>, are available and Tesla cars use a 17-inch touchscreen for most controls. Since screen sizes are measured on the diagonal, the Tesla screen has 3 times the area of a 9.7-inch <a href="/articles/ipad-usability-year-one/">iPad screen</a>, and the Nabi Big Tab has <strong>6 times the area</strong> of an iPad.</p>
+		<table>
+		  <thead>
+			<tr>
+			  <th>#</th>
+			  <th>First Name</th>
+			  <th>Last Name</th>
+			  <th>Username</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <th scope="row">1</th>
+			  <td>Mark</td>
+			  <td>Otto</td>
+			  <td>@mdo</td>
+			</tr>
+			<tr>
+			  <th scope="row">2</th>
+			  <td>Jacob</td>
+			  <td>Thornton</td>
+			  <td>@fat</td>
+			</tr>
+			<tr>
+			  <th scope="row">3</th>
+			  <td>Larry</td>
+			  <td>the Bird</td>
+			  <td>@twitter</td>
+			</tr>
+		  </tbody>
+		</table>
+		<p>Just as designing for small screens is different than designing for the desktop, designing for these larger screens has its<strong> own special set of considerations</strong>. What works well with a <a href="http://www.nngroup.com/articles/mouse-vs-fingers-input-device/">mouse on a large-screen device</a> may not work well on a large touchscreen. What works well on a <a href="http://www.nngroup.com/articles/tablet-usability/">smaller-sized tablet</a> may not scale to a large tablet.</p>
+		<p>What considerations do we have to take into account when designing for larger touchscreen devices? The following observations are a result of my family’s usage of the Nabi Big Tab, a 24-inch tablet aimed at parents and their children. (A perk of working in user experience and interaction design is occasionally buying a gadget in the interest of “research.”) My focus is not on reviewing the device or analyzing the usability of particular apps or games, but instead on how the size and scale of the device impacts our experience with it.</p>
+		<h2>Input: Typing, Forms, and Gestures</h2>
+		<p>On-screen keyboards are often awkward for input, but that <strong>awkwardness is amplified</strong> when the keyboard scales with the size of the device and becomes 24 inches across. Every key press on the BigTab required an arm movement, rather than a finger or hand movement. Typing with thumbs or even in a standard keyboard-typing position was not possible due to the size of the on-screen keyboard. You simply couldn’t reach each key without moving your arms.</p>
+		<p>In addition, the large size of the screen meant that the text being typed appeared far from the keyboard. On a small screen device, an on-screen keyboard is close enough to the selected field that a quick glance can check your spelling. On the large screen, answers were far from the keyboard, causing glances up and down between key presses. Between the <strong>split of visual attention</strong> and the arm movements, each keypress felt like an individual action —something noteworthy rather than unnoticeable because of the work involved reaching each key.</p>    
+	</div>
+	<!-- Modals -->
+	<div class="modalMask modalHidden" id="modalMask"></div>
+	<div class="modalFrame modalHidden" id="modalFrame">
+		<button class="dismissModal" id="dismissModal">x</button>
+		<div id="modalContent"><p class="modalPlaceholder">Please wait...</p></div>
+	</div>
+	<!-- Scripts -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

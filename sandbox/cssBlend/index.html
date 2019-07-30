@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app>
+	<head>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/styles.css" />
+	</head>
+	<body>
+		<div class="container" ng-controller="blendCtrl" ng-cloak>
+			<div class="panel">
+				<p class="panel-body">
+					To turn on experimental features in any version of Chrome, go to <code>chrome://flags/#enable-experimental-web-platform-features</code>.
+					<br />To engage blend modes, click on <code>Enable</code> and restart the browser.
+				</p>
+				<div class="row">
+					<div class="col-md-3 col-md-offset-4">
+						<div class="input-group">
+							<span class="input-group-addon">#</span>
+							<input id="bgColor" type="text" class="form-control" placeholder="Hex Value" value="FF851B"/>
+							<span class="input-group-btn">
+								<button class="btn btn-success bgColor" data-target="body" type="button">Set BG Color</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="btn-group btn-group-sm">
+				<button ng-repeat="mode in modes" class="btn btn-primary mode" data-target="body" data-blend-mode="{{mode.mode}}">{{mode.mode}}</button>
+			</div>
+		</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="js/scripts.js"></script>
+	</body>
+</html>

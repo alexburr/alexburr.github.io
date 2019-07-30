@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Radio Buttons</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
+		<style>
+			body { background: #f0f0f0; }
+			.container { text-align: center; }
+			#displayBox { 
+				background-color: #000;
+				border-radius: 4px;
+				height: 40px;
+				padding-top: 0;
+				padding-bottom: 0; 
+				position: relative; 
+				width: 470px; 
+				margin: 1em auto;
+			}
+			#displayBox::after {
+				content: "";
+				background-image: url('rca_a-20_dial_75dpi.jpg');
+				background-position-y: -162px;
+				background-position-x: -20px;
+				opacity: 0.66;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				position: absolute;
+				border-radius: 4px;
+			}
+			#needle { 
+				display: inline-block; 
+				width: 2px; 
+				height: 28px; 
+				background-color: #f66; 
+				position: absolute;
+				-webkit-transition: all 0.15s ease-in-out;
+				-moz-transition: all 0.15s ease-in-out;
+				-o-transition: all 0.15s ease-in-out;
+				-ms-transition: all 0.15s ease-in-out;
+				transition: all 0.15s ease-in-out;
+				bottom: 0;
+				left: 7%;
+				z-index: 10;
+				border-left: 1px solid #f00;
+				border-radius: 2px 2px 0 0;
+				box-shadow: -1px 0 0 black;
+			}
+			#displayText { display: none; margin-bottom: 1em; width: 27%; }
+			.btn-group { margin: 0 auto; }
+			.btn { padding-left: 2em; padding-right: 2em; }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h3>Radio Buttons</h3>
+			<textarea class="form-control" id="displayText" rows="2" readonly="true"></textarea>
+			<div id="displayBox"><span id="needle"><span></div>
+			<div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-primary"><input type="radio" name="presets" id="preset1" data-preset="18" />1</label>
+				<label class="btn btn-primary"><input type="radio" name="presets" id="preset2" data-preset="28" />2</label>
+				<label class="btn btn-primary"><input type="radio" name="presets" id="preset3" data-preset="55" />3</label>
+				<label class="btn btn-primary"><input type="radio" name="presets" id="preset4" data-preset="62" />4</label>
+				<label class="btn btn-primary"><input type="radio" name="presets" id="preset5" data-preset="31" />5</label>
+				<label class="btn btn-primary"><input type="radio" name="presets" id="preset6" data-preset="92" />6</label>
+			</div>
+		</div>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$(document).on('change', 'input:radio[id^="preset"]', function (event) {
+					//$('#displayBox').text($(this).data('preset'));
+					var preset = $(this).data('preset') + "%";
+					$('#needle').css({left: preset});
+				});
+			});
+		</script>
+	</body>
+</html>

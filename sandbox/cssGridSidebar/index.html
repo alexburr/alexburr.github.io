@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,100italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+<style>
+	html, body { background: #fff; font-family: 'Roboto', sans-serif; margin: 0; padding: 0; }
+	
+	body { 
+		background: blue;
+		display: grid;
+		grid-column-gap: 0;
+		grid-row-gap: 0;
+		grid-template-columns: [col-sidebar-start col-content-fullwidth-start] 300px [col-sidebar-end col-content-collapsed-start] auto [col-content-end];
+		grid-template-rows: [row-header-start] 10vh [row-header-end row-content-start] 80vh [row-content-end row-footer-start] 10vh [row-footer-end];
+		grid-template-areas: "sidebar content";
+		height: 100vh;
+		margin: 0;
+	}
+	
+	h1, h2, h3 { font-family: 'Oswald', sans-serif; font-weight: normal; margin: 0; }
+	button { background: #f0f0f0; border-color: #ccc; border-style: solid; border-width: 1px; color: #666; cursor: pointer; font-family: 'Roboto', sans-serif; font-size: 1em; }
+	button:active:hover { background-color: #f9f9f9; }
+	button:focus { outline: none; }
+	button:hover { box-shadow: .0625em .0625em .125em rgba(0,0,0,.125); }
+	
+	table { border-collapse: collapse; margin: 2em 0; width: 100%; }
+	table th, table td { padding-left: .75em; padding-right: .75em; }
+	table td { padding-top: .75em; padding-bottom: 0; }
+	table th { padding-top: 0; padding-bottom: .75em; }
+	table thead th { border-bottom: 1px solid #ccc; text-align: left; }
+	
+	.block { background: #fff; color: #333; }
+	.blockAlt { background: #f0f0f0; color: #333; }
+	.blockInverse { background: #333; color: #fff; }
+	
+	body > * { box-sizing: border-box; padding: 1em; }
+	body > header { grid-area: row-header-start / col-content-fullwidth-start/ row-header-end / col-content-end; position: relative; }
+	body > .sidebar { grid-area: row-header-start / col-sidebar-start / row-footer-end / col-sidebar-end; }
+	body > .content { grid-area: row-content-start / col-content-fullwidth-start / row-content-end / col-content-end;  }
+	body > footer { grid-area: row-footer-start / col-content-fullwidth-start / row-footer-end / col-content-end; }
+	
+	body.hasSidebar > header { grid-area: row-header-start / col-content-collapsed-start/ row-header-end / col-content-end; }
+	body.hasSidebar > .sidebar { grid-area: row-header-start / col-sidebar-start / row-footer-end / col-sidebar-end; width: auto; }
+	body.hasSidebar > .content { grid-area: row-content-start / col-content-collapsed-start / row-content-end / col-content-end; }
+	body.hasSidebar > footer { grid-area: row-footer-start / col-content-collapsed-start / row-footer-end / col-content-end; }
+	
+	#toggleSidebar { border-width: 1px 1px 1px 0; bottom: .25em; left: 0; font-size: 2.5em; position: absolute; top: .25em; }
+	body > header h1 { margin-left: 1.25em; }
+</style>
+</head>
+<body>
+	<div class="sidebar blockInverse"><p>Sidebar</p></div>
+	<header class="blockAlt">
+		<button id="toggleSidebar">&equiv;</button>
+		<h1>Header</h1>
+	</header>
+	<div class="content block">
+		<p>Content</p>
+		<table>
+			<colgroup span="4"></colgroup>
+			<thead>
+				<tr>
+					<th>Country</th>
+					<th>Capital</th>
+					<th>Continent</th>
+					<th>Population<br /><small>2016 estimate</small></th>
+					<th>Official Language(s)</th>
+					<th>Traffic<br /><small>on the</small></th>
+					<th>GDP<br /><small>Millions USD</small></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>USA</td>
+					<td>Washington D.C.</td>
+					<td>North America</td>
+					<td>309 million</td>
+					<td>English</td>
+					<td>Right</td>
+					<td>17,947,000</td>
+				</tr>
+				<tr>
+					<td>Sweden</td>
+					<td>Stockholm</td>
+					<td>Europe</td>
+					<td>9.9 million</td>
+					<td>Swedish</td>
+					<td>Right</td>
+					<td>492,618</td>
+				</tr>
+				<tr>
+					<td>United Arab Emirates</td>
+					<td>Abu Dhabi</td>
+					<td>Asia</td>
+					<td>5.8 million</td>
+					<td>Arabic</td>
+					<td>Right</td>
+					<td>345,483</td>
+				</tr>
+				<tr>
+					<td>Greece</td>
+					<td>Athens</td>
+					<td>Europe</td>
+					<td>11 million</td>
+					<td>Greek</td>
+					<td>Right</td>
+					<td>195,320</td>
+				</tr>
+				<tr>
+					<td>China</td>
+					<td>Beijing</td>
+					<td>Asia</td>
+					<td>1.38 billion</td>
+					<td>Standard Chinese</td>
+					<td>Right</td>
+					<td>10,982,829</td>
+				</tr>
+				<tr>
+					<td>Germany</td>
+					<td>Berlin</td>
+					<td>Europe</td>
+					<td>81.8 million</td>
+					<td>German</td>
+					<td>Right</td>
+					<td>3,357,614</td>
+				</tr>
+				<tr>
+					<td>New Zealand</td>
+					<td>Wellington</td>
+					<td>&mdash;</td>
+					<td>4.7 million</td>
+					<td>English, Maori</td>
+					<td>Left</td>
+					<td>172,248</td>
+				</tr>
+				<tr>
+					<td>Sierra Leone</td>
+					<td>Freetown</td>
+					<td>Africa</td>
+					<td>7 million</td>
+					<td>English</td>
+					<td>Right</td>
+					<td>4,167</td>
+				</tr>
+				<!-- <tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr> -->
+			</tbody>
+		</table>
+		<button>test</button>
+	</div>
+	<footer class="blockAlt">
+		<p>Footer</p>
+	</footer>
+	<!-- Scripts -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#toggleSidebar").click(function() {
+				$("body").toggleClass("hasSidebar");
+			});
+		});
+	</script>
+</body>
+</html>

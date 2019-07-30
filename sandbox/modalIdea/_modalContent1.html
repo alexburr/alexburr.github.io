@@ -1,0 +1,39 @@
+<h2>Modal 1</h2>
+<p>The <strong>HTML<em> </em><code>&lt;progress&gt;</code> Element</strong> is used to view the completion progress of a task. While the specifics of how it's displayed is left up to the browser developer, it's typically displayed as a progress bar. Javascript can be used to manipulate the value of progress bar.</p>
+<table class="properties">
+ <tbody>
+  <tr>
+   <th scope="row"><a href="/en-US/docs/Web/HTML/Content_categories" title="HTML/Content_categories">Content categories</a></th>
+   <td><a href="/en-US/docs/Web/HTML/Content_categories#Flow_content" title="HTML/Content categories#Flow content">Flow content</a>, <a href="/en-US/docs/Web/HTML/Content_categories#Phrasing_content" title="HTML/Content categories#Phrasing content">phrasing content</a>, labelable content, palpable content.</td>
+  </tr>
+  <tr>
+   <th scope="row">Permitted content</th>
+   <td><a href="/en-US/docs/Web/HTML/Content_categories#Phrasing_content" title="HTML/Content_categories#Phrasing_content">Phrasing content</a>, but there must be no <code>&lt;progress&gt;</code> element among its descendants.</td>
+  </tr>
+  <tr>
+   <th scope="row">Tag omission</th>
+   <td>None, both the starting and ending tag are mandatory.</td>
+  </tr>
+  <tr>
+   <th scope="row">Permitted parent elements</th>
+   <td>Any element that accepts <a href="/en-US/docs/Web/HTML/Content_categories#Phrasing_content" title="HTML/Content_categories#Phrasing_content">phrasing content</a>.</td>
+  </tr>
+  <tr>
+   <th scope="row">DOM interface</th>
+   <td><a href="/en-US/docs/Web/API/HTMLProgressElement" title="The HTMLProgressElement interface provides special properties and methods (beyond the regular HTMLElement interface it also has available to it by inheritance) for manipulating the layout and presentation of <progress> elements."><code>HTMLProgressElement</code></a></td>
+  </tr>
+ </tbody>
+</table>
+<h3>Attributes</h3>
+<p><span style="line-height: 21px;">This element includes the&nbsp;</span><a href="/en-US/docs/Web/HTML/Global_attributes" title="HTML/Global attributes" style="line-height: 21px;">global attributes</a><span style="line-height: 21px;">.</span></p>
+<dl>
+ <dt><strong id="attr-max"><code>max</code></strong></dt>
+ <dd>This attribute describes how much work the task indicated by the <code>progress</code> element requires. The <code>max</code> attribute, if present, must have a value greater than zero and be a valid floating point number.</dd>
+ <dt><strong id="attr-value"><code>value</code></strong></dt>
+ <dd>This attribute specifies how much of the task that has been completed. It must be a valid floating point number between 0 and <code>max</code>, or between 0 and 1 if <code>max</code> is omitted. If there is no <code>value</code> attribute, the progress bar is indeterminate; this indicates that an activity is ongoing with no indication of how long it is expected to take.</dd>
+</dl>
+<p>You can use the <a href="/en-US/docs/Web/CSS/-moz-orient" title="The -moz-orient CSS property specifies the orientation of the element to which it's applied."><code>-moz-orient</code></a> property to specify whether the progress bar should be rendered horizontally (the default) or vertically. The <a href="/en-US/docs/Web/CSS/:indeterminate" title="The :indeterminate CSS pseudo-class represents any <input type=&quot;checkbox&quot;> element whose indeterminate DOM property is set to true by JavaScript. In addition, in some browsers, it can be used to match to <progress>&nbsp;elements in an indeterminate state."><code>:indeterminate</code></a> pseudo-class can be used to match against indeterminate progress bars.</p>
+<h3>Examples</h3>
+<pre class="brush: html line-numbers  language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>progress</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>70<span class="token punctuation">"</span></span> <span class="token attr-name">max</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>70 %<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>progress</span><span class="token punctuation">&gt;</span></span><span class="line-numbers-rows"><span></span></span></code></pre>
+<h4>Result</h4>
+<p><progress value="70" max="100">70 %</progress></p>

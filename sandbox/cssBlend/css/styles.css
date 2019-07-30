@@ -1,0 +1,12 @@
+html,body { min-height: 100%; }
+body {
+	background: url(../img/bg1.jpg) no-repeat center center fixed, #FF851B; 
+	background-size: cover;
+	background-blend-mode: normal, normal;
+	font-family: "Segoe UI"; 
+	font-size: 14pt; 
+}
+
+.container { margin-top: 3em; }
+.input-group { margin-bottom: 1em; }
+.btn { text-transform: capitalize; }

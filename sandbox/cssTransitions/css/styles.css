@@ -1,0 +1,219 @@
+/* General styles */
+body { 
+	color: #fff;
+	font-family: "Segoe UI"; 
+	font-size: 12pt; 
+}
+
+h1 { font-weight: normal; margin: 0; }
+/* hr { border-color: #999; border-style: solid; border-width: 1px 0 0 0; margin: 1.5em 0; } */
+hr { display: none; }
+
+button { 
+	background: rgba(0,0,0,.5);
+	border: 1px solid rgba(0,0,0,.5); 
+	color: #fff;
+	font-family: "Segoe UI";
+	font-size: 12pt;
+	height: 36px;
+	line-height: 34px;
+	padding: 0 1em;
+	transition: all .1s ease;
+}
+	button:hover
+	{
+		background: rgba(0,0,0,.8);
+		border-color: #fff;
+		cursor: pointer;
+	}
+	button:active
+	{
+		background: #fff;
+		color: #000;
+	}
+	button i
+	{
+		color: rgba(255,255,255,.75);
+		margin-right: .25em;
+		transition: all .1s ease;
+	}
+		button:hover i { color: #fff; }
+		button:active i { color: #000; }
+
+#background {
+	background-color: #fafafa; 
+	background-image: url(../img/bg2.jpg); 
+	background-size: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -100;
+}
+	.effect #background {
+		filter: blur(5px);
+		-webkit-filter: blur(5px);
+		-moz-filter: blur(5px);
+		-o-filter: blur(5px);
+		-ms-filter: blur(5px);
+	}
+
+#overlay 
+{
+	background: rgba(0,0,0,0.5);
+	display: none;
+	height: 100%; 
+	position: fixed; top: 0;
+	width: 100%; 
+	transition: all .5s ease;
+}
+	
+.actionButtons
+{
+	text-align: center;
+}
+	
+/* Modal boxes */
+.box
+{
+	left: 50%;
+	height: 53%;
+	max-width: 630px;
+	min-width: 320px;				
+	position: fixed;
+	top: 50%;
+	visibility: hidden;
+	width: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+}
+	.effect 
+	{
+		visibility: visible;
+	}
+	.boxWrap 
+	{ 
+		background: rgb(255,255,255);
+		border-radius: .5em;
+		color: #000;
+		height: 100%;
+		opacity: 0;
+		overflow-y: hidden;
+		transition: all .5s ease;
+	}
+		.effect .boxWrap
+		{
+			opacity: 1;
+		}
+		.boxWrap h1 
+		{ 
+			color: rgba(0,0,0,.5);
+			padding: .25em .5em;
+		}
+		.boxContent
+		{
+			padding: 0 1em;
+		}
+		.boxWrap button 
+		{
+			border-width: 0;
+			margin: 0;
+		}
+
+/*-------------*/
+/* Spin effect */
+/*-------------*/
+.spin .boxWrap 
+{
+	-webkit-transform: rotate(540deg) scale(0);
+	-moz-transform: rotate(540deg) scale(0);
+	-ms-transform: rotate(540deg) scale(0);
+	transform: rotate(540deg) scale(0);
+}
+.spin.effect .boxWrap
+{
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+/*--------------*/
+/* Scale effect */
+/*--------------*/
+.scale .boxWrap 
+{
+	-webkit-transform: scale(0);
+	-moz-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+}
+.scale.effect .boxWrap
+{
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+/*--------------*/
+/* Slide effect */
+/*--------------*/
+.slide
+{
+	-webkit-transform: translateX(0%) translateY(-50%);
+	-moz-transform: translateX(0%) translateY(-50%);
+	-ms-transform: translateX(0%) translateY(-50%);
+	transform: translateX(0%) translateY(-50%);
+	transition: all .5s ease;
+}
+.slide.effect
+{
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+}
+
+/*--------------*/
+/* Skew effect */
+/*--------------*/
+.skew .boxWrap
+{
+	-webkit-transform: skewy(90deg) scale(0);
+	-moz-transform: skewy(90deg) scale(0);
+	-ms-transform: skewy(90deg) scale(0);
+	transform: skewy(90deg) scale(0);
+}
+.skew.effect .boxWrap
+{
+	-webkit-transform: skewy(0) scale(1);
+	-moz-transform: skewy(0) scale(1);
+	-ms-transform: skewy(0) scale(1);
+	transform: skewy(0) scale(1);
+}
+
+/*--------------*/
+/* Flip effect */
+/*--------------*/
+.flip
+{
+	-webkit-perspective: 1300px;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+}
+.flip .boxWrap
+{
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: rotateX(-60deg);
+	-webkit-transform-origin-x: 50%;
+	-webkit-transform-origin-y: 0px;
+	-webkit-transform-origin-z: initial;
+}
+.flip.effect .boxWrap
+{
+	-webkit-transform: rotateX(0deg);
+}

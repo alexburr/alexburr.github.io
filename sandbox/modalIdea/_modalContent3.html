@@ -1,0 +1,9 @@
+<h2>Modal 3</h2>
+<p>Executing JavaScript in a modal...</p>
+<p><button class="secondary" id="buttonIncrement">Increment</button> <input id="counter" min="0" max="100" readonly="readonly" step="1" type="number" style="margin-left: 1em;" value="0" /></p>
+<script>
+	var $counter = $("#counter");
+	$("#buttonIncrement").click(function() {
+		$counter.val(parseInt($counter.val()) + 1);
+	});
+</script>
