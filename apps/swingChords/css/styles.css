@@ -63,8 +63,8 @@ h2 {
 }
 @media (max-width: 480px) {
   .item {
-    margin: 1em 3vw;
-    width: 35vw;
+    margin: 1em 6vw;
+    width: 32vw;
   }
 }
 .item h3 {
@@ -86,7 +86,7 @@ h2 {
   }
 }
 .item h4 {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Segoe UI";
   font-style: italic;
   font-weight: normal;
@@ -132,6 +132,7 @@ h2 {
   fill: none;
   stroke: darkslategray;
   stroke-width: 2pt;
+  border-top: 2pt solid #373a3c;
 }
 @media (max-width: 480px) {
   .gridBox,
