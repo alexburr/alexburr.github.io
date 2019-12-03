@@ -1,0 +1,274 @@
+html,
+body,
+h1,
+div,
+h2,
+table,
+pre {
+  margin: 0;
+}
+body {
+  background: white;
+  font-size: 1.5vw;
+  margin: 0;
+  padding: 1em;
+}
+@media (max-width: 400px) {
+  body {
+    padding: 0.25em;
+  }
+}
+@media print {
+  body {
+    font-size: 15pt;
+    padding: 0;
+  }
+}
+header {
+  position: fixed;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 0 0 1em 0;
+  padding: 0.25em 2em;
+  background: white;
+  border-bottom: 1px solid gray;
+  z-index: 10;
+}
+@media print {
+  header {
+    display: none;
+  }
+}
+header h1 {
+  float: left;
+  margin: 0;
+}
+header select {
+  float: right;
+  font-size: 16pt;
+  margin: 0.25em;
+}
+div.songContainer {
+  margin: 1em auto;
+  padding: 1em;
+}
+@media (max-width: 400px) {
+  div.songContainer {
+    padding: 0;
+  }
+}
+@media print {
+  div.songContainer {
+    margin: 0 auto 3em auto;
+    padding: 0.25em;
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
+}
+div.songContainer:first-of-type {
+  margin-top: 2em;
+}
+@media print {
+  div.songContainer:first-of-type {
+    margin-top: 1em;
+  }
+}
+@media screen {
+  div.songContainer:nth-of-type(even) {
+    background-color: #f0f0f0;
+  }
+}
+div.songContainer > h2 {
+  margin: 0 0 0.5em 0;
+}
+div.songContainer > h2 > span:first-child {
+  margin-right: 0.5em;
+  text-decoration: underline;
+}
+div.songContainer p.endNotes {
+  font-size: 125%;
+  margin: 0.5em 1em;
+  text-align: right;
+}
+table.songTable.longSong {
+  font-size: 85%;
+}
+table.songTable > tr > td {
+  line-height: 1.5;
+  vertical-align: top;
+}
+table.songTable > tr > td:last-child {
+  width: 100%;
+}
+table.songTable > tr > td.sectionName {
+  padding-top: 0.75em;
+  width: 1em;
+}
+table.songTable > tr > td.sectionName > span {
+  display: inline-block;
+  font-family: serif;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+}
+table.songTable > tr > td.sectionName.songSection > span {
+  border: 1px solid black;
+  border-radius: 100%;
+  width: 1em;
+  height: 1em;
+}
+table.songTable > tr > td.sectionName.sectionIntro,
+table.songTable > tr > td.sectionName.sectionEnding,
+table.songTable > tr > td.sectionName.sectionCoda {
+  font-size: 75%;
+  padding-top: 1.5em;
+}
+table.songTable > tr > td.sectionName.sectionIntro + td > table.chordRowTable {
+  margin-bottom: 1em;
+}
+table.songTable > tr > td.sectionName.sectionCoda {
+  vertical-align: text-bottom;
+  width: 1em;
+}
+table.songTable > tr > td.sectionName.sectionCoda > span {
+  font-family: "Arial", sans-serif;
+  font-size: 400%;
+  font-weight: normal;
+  line-height: 0.75;
+}
+table.songTable > tr > td.sectionName.sectionCoda + td > table.chordRowTable {
+  margin-top: 2em;
+}
+table.songTable > tr > td > table.sectionChordTable {
+  border-collapse: separate;
+  border-spacing: 0.5em;
+  width: 100%;
+  table-layout: fixed;
+}
+table.songTable > tr > td > table.sectionChordTable > tr > table {
+  width: 100%;
+}
+table.songTable > tr > td > table.sectionChordTable td.measure {
+  border-width: 0 0 0 1px;
+  border-style: solid;
+  border-color: black;
+}
+@media print {
+  table.songTable > tr > td > table.sectionChordTable td.measure {
+    border-left-width: 2pt;
+  }
+}
+table.songTable > tr > td > table.sectionChordTable td.measure.startRepeat {
+  border-left-width: 0;
+}
+table.songTable > tr > td > table.sectionChordTable td.measure.startRepeat > table:before {
+  content: "\01D106";
+  position: absolute;
+  font-size: 5vw;
+  line-height: 0.75;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: -0.125em;
+}
+@media print {
+  table.songTable > tr > td > table.sectionChordTable td.measure.startRepeat > table:before {
+    font-size: 280%;
+  }
+}
+table.songTable > tr > td > table.sectionChordTable td.measure.startRepeat > table > tr:first-child > td:first-child {
+  padding-left: 0.5em;
+}
+table.songTable > tr > td > table.sectionChordTable td.measure.endRepeat {
+  border-right-width: 0 !important;
+}
+table.songTable > tr > td > table.sectionChordTable td.measure.endRepeat > table:before {
+  content: "\01D107";
+  position: absolute;
+  font-size: 5vw;
+  line-height: 0.75;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  right: -0.125em;
+}
+@media print {
+  table.songTable > tr > td > table.sectionChordTable td.measure.endRepeat > table:before {
+    font-size: 280%;
+  }
+}
+table.songTable > tr > td > table.sectionChordTable td.measure.endRepeat > table > tr:last-child > td:last-child {
+  padding-right: 1em;
+}
+table.songTable > tr > td > table.sectionChordTable td.measure:last-child {
+  border-right-width: 1px;
+}
+@media print {
+  table.songTable > tr > td > table.sectionChordTable td.measure:last-child {
+    border-right-width: 2pt;
+  }
+}
+table.songTable > tr > td > table.sectionChordTable td.measure:empty {
+  border-width: 0;
+}
+table.songTable > tr > td > table.sectionChordTable td.measure > table {
+  border-collapse: collapse;
+  position: relative;
+  width: 100%;
+}
+table.songTable > tr > td > table.sectionChordTable > tr:last-child > td.measure:last-child {
+  border-right-style: double;
+  border-right-width: 3px;
+}
+@media print {
+  table.songTable > tr > td > table.sectionChordTable > tr:last-child > td.measure:last-child {
+    border-right-width: 5pt;
+  }
+}
+table.songTable > tr > td > table.sectionChordTable td.chord > pre {
+  font-family: "Gothic A1", sans-serif;
+  font-size: 125%;
+  font-weight: 600;
+  min-width: 1em;
+  text-align: center;
+}
+table.songTable > tr > td > table.sectionChordTable td.chord > pre > sup {
+  font-size: 66%;
+}
+table.songTable > tr > td > table.sectionChordTable td.chord.chords-2-per > pre {
+  font-size: 112%;
+}
+table.songTable > tr > td > table.sectionChordTable td.chord.chords-4-per > pre {
+  font-size: 100%;
+}
+table.songTable > tr > td > table.sectionChordTable td.toCoda {
+  vertical-align: bottom;
+  width: 1em;
+}
+table.songTable > tr > td > table.sectionChordTable td.toCoda > pre {
+  font-size: 250%;
+  line-height: 0.4;
+}
+table.songTable > tr:last-child > td:last-child > table.sectionChordTable > tr:last-child > td.measure:last-child {
+  border-right-width: 0 !important;
+}
+table.songTable > tr:last-child > td:last-child > table.sectionChordTable > tr:last-child > td.measure:last-child > table:before {
+  content: "\01D102";
+  position: absolute;
+  font-size: 5vw;
+  line-height: 0.75;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  right: -0.125em;
+}
+@media print {
+  table.songTable > tr:last-child > td:last-child > table.sectionChordTable > tr:last-child > td.measure:last-child > table:before {
+    font-size: 280%;
+  }
+}
+table.songTable > tr:last-child > td:last-child > table.sectionChordTable > tr:last-child > td.measure:last-child > table > tr:last-child > td:last-child {
+  padding-right: 1em;
+}
