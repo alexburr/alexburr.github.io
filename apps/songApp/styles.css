@@ -234,14 +234,29 @@ table.songTable > tr > td > table.sectionChordTable td.chord > pre {
   min-width: 1em;
   text-align: center;
 }
+@media print {
+  table.songTable > tr > td > table.sectionChordTable td.chord > pre {
+    font-size: 28pt;
+  }
+}
 table.songTable > tr > td > table.sectionChordTable td.chord > pre > sup {
   font-size: 66%;
 }
 table.songTable > tr > td > table.sectionChordTable td.chord.chords-2-per > pre {
   font-size: 112%;
 }
+@media print {
+  table.songTable > tr > td > table.sectionChordTable td.chord.chords-2-per > pre {
+    font-size: 24pt;
+  }
+}
 table.songTable > tr > td > table.sectionChordTable td.chord.chords-4-per > pre {
   font-size: 100%;
+}
+@media print {
+  table.songTable > tr > td > table.sectionChordTable td.chord.chords-4-per > pre {
+    font-size: 20pt;
+  }
 }
 table.songTable > tr > td > table.sectionChordTable td.toCoda {
   vertical-align: bottom;
