@@ -1,31 +1,4 @@
-@font-face {
-  font-family: 'WeblySleekUILight';
-  src: url('../fonts/weblysleekuil.eot');
-  src: url('../fonts/weblysleekuil.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/weblysleekuil.woff') format('woff'),
-       url('../fonts/weblysleekuil.ttf') format('truetype'),
-       url('../fonts/weblysleekuil.svg#WeblySleekUILight') format('svg');
-}
-
-@font-face {
-  font-family: 'WeblySleekUISemilight';
-  src: url('../fonts/weblysleekuisl.eot');
-  src: url('../fonts/weblysleekuisl.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/weblysleekuisl.woff') format('woff'),
-       url('../fonts/weblysleekuisl.ttf') format('truetype'),
-       url('../fonts/weblysleekuisl.svg#WeblySleekUISemilight') format('svg');
-}
-
-@font-face {
-  font-family: 'WeblySleekUISemibold';
-  src: url('../fonts/weblysleekuisb.eot');
-  src: url('../fonts/weblysleekuisb.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/weblysleekuisb.woff') format('woff'),
-       url('../fonts/weblysleekuisb.ttf') format('truetype'),
-       url('../fonts/weblysleekuisb.svg#WeblySleekUISemibold') format('svg');
-}
-
-html { background: #fff; font-family: 'WeblySleekUISemilight', sans-serif; padding: 0; }
+html { background: #fff; font-family: 'Hind Vadodara', sans-serif; padding: 0; }
 
 body {  font-size: 10pt;
         line-height: 1.4;
@@ -37,12 +10,12 @@ body {  font-size: 10pt;
 		
 	a { -webkit-transition: all 0.1s ease-in; -moz-transition: all 0.1s ease-in; transition: all 0.1s ease-in; }
 	
-	strong { font-family: 'WeblySleekUISemibold', sans-serif; font-weight: 400; }
+	strong { font-family: 'Hind Vadodara', sans-serif; font-weight: 400; }
 	em, i { font-style: italic; }
 	
 	article { margin: 0 auto; padding: 1em; }
 	
-	h1,h2,h3 { font-family: 'WeblySleekUILight', sans-serif; font-weight: 400; clear: both; text-align: center; }
+	h1,h2,h3 { font-family: 'Hind Vadodara', sans-serif; font-weight: 300; clear: both; text-align: center; }
 		h2, h3 { border-bottom: 1px dotted #ccc; border-top: 1px dotted #ccc; line-height: 1.6; margin: 1em 0; }
 	
 	h1 { border-bottom: 1px solid #ccc; font-size: 24pt; margin-top: 0; margin-bottom: .25em; }
@@ -68,7 +41,7 @@ body {  font-size: 10pt;
 		.skills li { padding-left: 1em; margin-bottom: 1.5em; }
 
 	dl { margin: 0 0 2em 1em; }
-		dt { font-family: 'WeblySleekUISemibold', sans-serif; font-weight: 400; color: #f90; margin-bottom: .5em; }
+		dt { font-family: 'Hind Vadodara', sans-serif; font-weight: 400; color: #f90; margin-bottom: .5em; }
 		.date { font-style: italic; margin: 0; opacity: .6; }
 		.description { margin: .5em 0 1.5em 0; }
 
