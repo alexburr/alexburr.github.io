@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crochet Blanket Sizer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://unpkg.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="display-3">Crochet Blanket Sizer</h1>
+      <div class="row" id="exportContainer">
+          <div class="col-lg-3"></div>
+          <div id="blanketContainer" class="col-lg-4 col-md-6 col-sm-12">
+            <div id="blanketPreviewContainer"></div>
+            <div id="downloadButtonContainer"></div>
+          </div>
+          <div id="colorContainer" class="col-lg-3 col-md-6 col-sm-12 small"></div>          
+          <div class="col-lg-2"></div>
+      </div>
+    </div>
+    <script type="text/babel" src="scripts/sizer.js"></script>
+  </body>
+</html>

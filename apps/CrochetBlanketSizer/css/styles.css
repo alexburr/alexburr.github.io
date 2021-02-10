@@ -1,0 +1,43 @@
+ body { padding: 1em; }
+ 
+ h1 { 
+    margin-bottom: .5em;
+    text-align: center;
+ }
+
+ #downloadButtonContainer {
+     padding: 1em;
+     text-align: center;
+ }
+
+#blanket { 
+    display: table; 
+    font-size: 1.2rem;
+    margin: auto;
+ }
+.blanket-row { display: table-row; }
+.blanket-square { 
+    /* border: 1px solid rgba(0,0,0,0.125); */
+    display: table-cell;
+    height: 1.5em;
+    vertical-align: middle;
+    width: 1.5em; 
+}
+
+.small-circle,
+.large-circle {
+    /* border: 1px solid rgba(0,0,0,0.0625); */
+    border-radius: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.small-circle { 
+    height: .5em; 
+    width: .5em; 
+}
+.large-circle { 
+    height: .8em; 
+    width: .8em; 
+}
+
+.hidden { display: none; }
