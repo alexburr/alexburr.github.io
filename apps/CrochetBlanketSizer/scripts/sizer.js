@@ -191,7 +191,10 @@ class DebugLogger {
     isDebug = false;
 
     constructor() {
-        this.isDebug = globals.isDebug;
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const debugParam = urlParams.get('debug');
+        this.isDebug = (debugParam == "true");
     }
 
     log(message) {
@@ -223,8 +226,7 @@ const globals = {
         { name: "teal", value: "15, 128, 118", displayName: "Teal", numberSmall: 0, numberLarge: 0 },
         { name: "daffodil", value: "251, 250, 150", displayName: "Daffodil", numberSmall: 0, numberLarge: 0 },        
         { name: "saffron", value: "247, 165, 87", displayName: "Saffron", numberSmall: 0, numberLarge: 0 }
-    ],
-    isDebug: true
+    ]
 };
 
 // ----------------
