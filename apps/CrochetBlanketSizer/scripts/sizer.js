@@ -58,84 +58,64 @@ class ClipboardCopier {
     }
 }
 
-class SizeTracker {
+class SizeManager {
     numberOfColumns = 0;
-    sizesArray = [];
-    totalSmall = 0;
-    totalLarge = 0;
 
     constructor(numberOfColumns) {
         this.numberOfColumns = numberOfColumns;
     }
 
-    checkSizesArray(className) {
-        if (className == "large-circle" && this.sizesArray.length > 0) {
-            let index = this.sizesArray.length;
-            if (this.sizesArray[index - 1] == "large-circle") { className = "small-circle"; }
-    
-            if (this.sizesArray.length > this.numberOfColumns) {
-                if ((this.sizesArray[index - (this.numberOfColumns - 3)] == "large-circle") || 
-                    (this.sizesArray[index - (this.numberOfColumns - 2)] == "large-circle") ||
-                    (this.sizesArray[index - (this.numberOfColumns - 1)] == "large-circle") ||
-                    (this.sizesArray[index - (this.numberOfColumns)] == "large-circle") ||
-                    (this.sizesArray[index - (this.numberOfColumns + 1)] == "large-circle")) { 
-                    className = "small-circle"; 
-                }            
+    getRandomSize() {        
+        let smallSize = (Math.random() < globals.smallProbability);
+        let size = smallSize ? "small" : "large";
+        return size;
+    }
+
+    checkRandomSize(blanketCircles, size) {
+        if (size == "large" && blanketCircles.length > 0) {
+            let index = blanketCircles.length;
+            if (blanketCircles[index - 1].size == "large") { size = "small"; }
+
+            if (blanketCircles.length > this.numberOfColumns) {
+                if ((blanketCircles[index - (this.numberOfColumns - 3)].size == "large") || 
+                    (blanketCircles[index - (this.numberOfColumns - 2)].size == "large") ||
+                    (blanketCircles[index - (this.numberOfColumns - 1)].size == "large") ||
+                    (blanketCircles[index - (this.numberOfColumns)].size == "large") ||
+                    (blanketCircles[index - (this.numberOfColumns + 1)].size == "large")) { 
+                    size = "small"; 
+                }
             }
         }
-    
-        this.sizesArray.push(className);
-        return className;
-    }
 
-    addToTotal(className) {
-        if (className == "small-circle") { this.totalSmall++; }
-        else { this.totalLarge++; }
-    }
-
-    getTotals() {
-        return { small: this.totalSmall, large: this.totalLarge, total: this.totalLarge + this.totalSmall };
+        return size;
     }
 }
 
-class ColorTracker {
-    colors = [
-        { name: "cream", value: "237, 236, 232", displayName: "Cream", numberSmall: 0, numberLarge: 0 },
-        { name: "petrol", value: "12, 67, 92", displayName: "Petrol", numberSmall: 0, numberLarge: 0 },
-        { name: "tomato", value: "140, 16, 16", displayName: "Tomato", numberSmall: 0, numberLarge: 0 },
-        { name: "graphite", value: "33, 33, 33", displayName: "Graphite", numberSmall: 0, numberLarge: 0 },
-        { name: "teal", value: "15, 128, 118", displayName: "Teal", numberSmall: 0, numberLarge: 0 },
-        { name: "daffodil", value: "251, 250, 150", displayName: "Daffodil", numberSmall: 0, numberLarge: 0 },        
-        { name: "saffron", value: "247, 165, 87", displayName: "Saffron", numberSmall: 0, numberLarge: 0 }
-    ];
-
+class ColorManager {
+    colors = [];
     numberOfColumns = 0;
-    colorsArray = [];
 
-    constructor(numberOfColumns) {
+    constructor(colors, numberOfColumns) {
+        this.colors = colors;
         this.numberOfColumns = numberOfColumns;
     }
 
-    getColors() {
-        return this.colors;
+    cycleColor(color) {
+        const index = this.colors.findIndex(colorToFind => colorToFind === color);
+        let newColor = (index == this.colors.length - 1) ? this.colors[0] : this.colors[index + 1];
+
+        return newColor;
     }
 
-    addRandomColor() {
-        let isColorSafe = false;
-        let randomColor = null;
-
-        while (!isColorSafe) {
-            randomColor = this.getRandomColor();
-            isColorSafe = this.checkColorsArray(randomColor);
-        }
-
-        this.colorsArray.push(randomColor);
+    getRandomColor() {
+        let randomNum = Math.floor(Math.random() * this.colors.length);
+        let randomColor = this.colors[randomNum];
         return randomColor;
     }
 
-    checkColorsArray(color) {
+    checkRandomColor(blanketCircles, color) {
         let result = false;
-        let lastIndex = this.colorsArray.length;
+        let lastIndex = blanketCircles.length;
         let numberOfColumns = this.numberOfColumns;
 
         if (lastIndex < 1) { 
@@ -143,40 +123,67 @@ class ColorTracker {
         }
 
         if (lastIndex == 1) {
-            result = (this.colorsArray[0] !== color);
+            result = (blanketCircles[0].color.name !== color.name);
         }
 
         if (lastIndex > 1) {
-            let previousColor = this.colorsArray[lastIndex - 1];
+            let previousColor = blanketCircles[lastIndex - 1].color;
 
             if (lastIndex > numberOfColumns) {
 
-                result = ((previousColor !== color) &&
-                        (this.colorsArray[lastIndex - (numberOfColumns - 3)] !== color) && 
-                        (this.colorsArray[lastIndex - (numberOfColumns - 2)] !== color) &&
-                        (this.colorsArray[lastIndex - (numberOfColumns - 1)] !== color) &&
-                        (this.colorsArray[lastIndex - (numberOfColumns)] !== color) &&
-                        (this.colorsArray[lastIndex - (numberOfColumns + 1)] !== color));
-                console.log("lastIndex > " + numberOfColumns, "(" + lastIndex + ")", color.name, result);
+                result = ((previousColor.name !== color.name) &&
+                        (blanketCircles[lastIndex - (numberOfColumns - 3)].color.name !== color.name) && 
+                        (blanketCircles[lastIndex - (numberOfColumns - 2)].color.name !== color.name) &&
+                        (blanketCircles[lastIndex - (numberOfColumns - 1)].color.name !== color.name) &&
+                        (blanketCircles[lastIndex - (numberOfColumns)].color.name !== color.name) &&
+                        (blanketCircles[lastIndex - (numberOfColumns + 1)].color !== color.name));
+                // console.log("lastIndex > " + numberOfColumns, "(" + lastIndex + ")", color.name, result);
             } else {
-                result = (previousColor !== color);
-                //console.log("lastIndex > 1", "(" + lastIndex + ")", color.name, previousColor.name, result);
+                result = (previousColor.name !== color.name);
+                // console.log("lastIndex > 1", "(" + lastIndex + ")", color.name, previousColor.name, result);
             }
         }
 
         return result;
     }
+}
 
-    getRandomColor() {
-        let randomNum = Math.floor(Math.random() * this.colors.length); // + 1
-        let randomColor = this.colors[randomNum];
-        return randomColor;
+class BlanketData {
+    blanketCircles = [];
+
+    addCircle(color, size) {
+        var blanketCircleObject = {
+            id: this.blanketCircles.length,
+            color: color,
+            size: size
+        }
+
+        this.blanketCircles.push(blanketCircleObject);
+        return blanketCircleObject;
     }
 
-    addToTotal(color, className) {
-        let colorToModify = this.colors[this.colors.indexOf(color)];
-        if (className == "small-circle") { colorToModify.numberSmall++; }
-        else { colorToModify.numberLarge++; }
+    getCircles() {
+        return this.blanketCircles;
+    }
+
+    updateCircleColor(id, color) {
+        let blanketCircleObject = this.getCircleById(id);
+        //console.log('blanketCircleObject found', blanketCircleObject.id, blanketCircleObject.color.name);
+        blanketCircleObject.color = color;
+        //console.log('blanketCircleObject change', blanketCircleObject.id, blanketCircleObject.color.name);
+        return blanketCircleObject;
+    }
+
+    updateCircleSize(id, size) {
+        let blanketCircleObject = this.getCircleById(id);
+        //console.log('blanketCircleObject found', blanketCircleObject.id, blanketCircleObject.size);
+        blanketCircleObject.size = size;
+        //console.log('blanketCircleObject change', blanketCircleObject.id, blanketCircleObject.size);
+        return blanketCircleObject;
+    }
+
+    getCircleById(idToFind) {
+        return this.blanketCircles.find( ({ id }) => id === idToFind );
     }
 }
 
@@ -193,24 +200,21 @@ const globals = {
     exportContainerDivId: "exportContainer",
     rowsDefault: 12,
     smallProbability: .4,
-    squareColor: { name: "duckEgg", value: "178, 198, 197", displayName: "Duck Egg" }
+    squareColor: { name: "duckEgg", value: "178, 198, 197", displayName: "Duck Egg" },
+    colors: [
+        { name: "cream", value: "237, 236, 232", displayName: "Cream", numberSmall: 0, numberLarge: 0 },
+        { name: "petrol", value: "12, 67, 92", displayName: "Petrol", numberSmall: 0, numberLarge: 0 },
+        { name: "tomato", value: "140, 16, 16", displayName: "Tomato", numberSmall: 0, numberLarge: 0 },
+        { name: "graphite", value: "33, 33, 33", displayName: "Graphite", numberSmall: 0, numberLarge: 0 },
+        { name: "teal", value: "15, 128, 118", displayName: "Teal", numberSmall: 0, numberLarge: 0 },
+        { name: "daffodil", value: "251, 250, 150", displayName: "Daffodil", numberSmall: 0, numberLarge: 0 },        
+        { name: "saffron", value: "247, 165, 87", displayName: "Saffron", numberSmall: 0, numberLarge: 0 }
+    ]
 };
 
 // ----------------
 // REACT COMPONENTS
 // ----------------
-var ColorTotal = React.createClass({
-    render: function() {
-        return(
-            <div>
-            <hr />
-            <h4>{this.props.displayName}: {this.props.number}</h4>
-            <p>Small: {this.props.numberSmall}, Large: {this.props.numberLarge}</p>
-            </div>
-        )
-    }
-})
-
 var ColorEntry = React.createClass({
     render: function() {
         return(
@@ -219,37 +223,61 @@ var ColorEntry = React.createClass({
                     <b>{this.props.displayName}</b><br />
                     Small: {this.props.numberSmall}, Large: {this.props.numberLarge}
                 </li>
-                {/* <h6></h6> 
-                <p></p> */}
             </ul>
         )
     }
 })
 
 var ColorList = React.createClass({
-    render: function() {
-        let colors = this.props.colors;
-        let colorEntries = [];
+    getColorCounts(colors, circles) {
+        let colorCounts = [];
         let i = 0;
 
         while (i < colors.length) {
+            let color = colors[i];
+            let j = 0;
+            let colorCount = { name: color.name, displayName: color.displayName, smallSize: 0, largeSize: 0 };
+
+            while (j < circles.length) {
+                let circle = circles[j];
+                if (circle.color.name == colorCount.name) {
+                    if (circle.size === "small") {
+                        colorCount.smallSize++;
+                    } else {
+                        colorCount.largeSize++;
+                    }
+                }
+
+                j++;
+            }
+
+            colorCounts.push(colorCount);
+            i++;
+        }
+
+        return colorCounts;
+    },
+    getColorEntries(colorCounts) {
+        let i = 0;
+        let colorEntries = [];
+        while (i < colorCounts.length) {
             colorEntries.push(
                 <ColorEntry 
-                    key={i} 
-                    displayName={colors[i].displayName} 
-                    numberSmall={colors[i].numberSmall} 
-                    numberLarge={colors[i].numberLarge} />
+                key={i} 
+                displayName={colorCounts[i].displayName} 
+                numberSmall={colorCounts[i].smallSize} 
+                numberLarge={colorCounts[i].largeSize} />
             );
             i++;
         }
-        colorEntries.push(
-            <ColorTotal 
-            key={99} 
-            displayName="Total" 
-            number={sizeTracker.getTotals().total}
-            numberSmall={sizeTracker.getTotals().small} 
-            numberLarge={sizeTracker.getTotals().large} />
-        );
+        return colorEntries;
+    },
+    render: function() {
+        let colors = this.props.colors;
+        let circles = this.props.circles;
+
+        let colorCounts = this.getColorCounts(colors, circles);
+        let colorEntries = this.getColorEntries(colorCounts);
 
         return (
             <div>{colorEntries}</div>
@@ -258,17 +286,64 @@ var ColorList = React.createClass({
 })
 
 var BlanketCircle = React.createClass({
+    getInitialState() {        
+        let size = sizeManager.getRandomSize();
+        size = sizeManager.checkRandomSize(blanketData.getCircles(), size);
+        let color = this.getNewColor();
+        let blanketCircleObject = blanketData.addCircle(color, size);
+
+        return {
+            color: color,
+            className: "blanket-circle " + size,
+            size: size,
+            colorName: color.name,
+            colorValue: color.value,
+            backgroundColor: "rgb(" + color.value + ")",
+            id: blanketCircleObject.id
+        };
+    },    
+    getNewColor() {
+        let isColorSafe = false;
+        let color = null;
+
+        while (!isColorSafe) {
+            color = colorManager.getRandomColor();
+            isColorSafe = colorManager.checkRandomColor(blanketData.getCircles(), color);
+        }
+
+        return color;
+    },
+    handleClick(e) {
+        if (e.shiftKey || e.ctrlKey) {
+            //console.log('will change', this.state.size);
+            let newSize = (this.state.size == "small") ? "large" : "small";
+            let blanketCircleObject = blanketData.updateCircleSize(this.state.id, newSize);
+            this.setState({
+                size: newSize,
+                className: "blanket-circle " + newSize
+            });
+            //console.log('changed', this.state.size);
+        } else {
+            //console.log('will change', this.state.colorName);
+            let newColor = colorManager.cycleColor(this.state.color);
+            let blanketCircleObject = blanketData.updateCircleColor(this.state.id, newColor);
+            this.setState({ 
+                color: newColor,
+                colorName: newColor.name, 
+                colorValue: newColor.value,
+                backgroundColor: "rgb(" + newColor.value + ")"
+            });
+            //console.log('changed', this.state.colorName);
+        }
+    },
+    componentDidUpdate() {
+        ReactDOM.render(
+            <ColorList colors={globals.colors} circles={blanketData.getCircles()} />, document.getElementById(globals.colorContainerDivId)
+        );
+    },
     render: function() {
-        let smallSize = (Math.random() < globals.smallProbability);
-        let className = (smallSize) ? "small-circle" : "large-circle";
-        className = sizeTracker.checkSizesArray(className);
-        let circleColor = colorTracker.addRandomColor();
-        let circleColorValue = circleColor.value;
-        let circleBackgroundColor = "rgb(" + circleColorValue + ")";
-        sizeTracker.addToTotal(className);
-        colorTracker.addToTotal(circleColor, className);
         return (
-            <span className={className} style={{ backgroundColor: circleBackgroundColor }} ></span>
+            <span className={this.state.className} style={{ backgroundColor: this.state.backgroundColor }} onClick={this.handleClick} ></span>
         )
     }
 })
@@ -336,7 +411,7 @@ var Blanket = React.createClass({
 var Form = React.createClass({
     getInitialState: function() {
         return {
-            colors: colorTracker.getColors(),
+            colors: globals.colors,
             rows: globals.rowsDefault,
             columns: globals.columnsDefault,
         };
@@ -346,7 +421,7 @@ var Form = React.createClass({
     },
     displayResults: function() {
         ReactDOM.render(
-            <ColorList colors={this.state.colors} />, document.getElementById(globals.colorContainerDivId)
+            <ColorList colors={this.state.colors} circles={blanketData.getCircles()} />, document.getElementById(globals.colorContainerDivId)
         );
         ReactDOM.render(
             <DownloadButton />, document.getElementById(globals.downloadButtonDivId)
@@ -364,6 +439,7 @@ var Form = React.createClass({
 // ----------------
 // Start the show
 // ----------------
-const colorTracker = new ColorTracker(globals.columnsDefault);
-const sizeTracker = new SizeTracker(globals.columnsDefault);
+const colorManager = new ColorManager(globals.colors, globals.columnsDefault); 
+const sizeManager = new SizeManager(globals.columnsDefault);
+const blanketData = new BlanketData();
 ReactDOM.render(<Form />, document.getElementById(globals.blanketPreviewContainerDivId));
