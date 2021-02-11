@@ -100,14 +100,13 @@ class SizeTracker {
 
 class ColorTracker {
     colors = [
-        //{ name: "stormBlue", value: "91, 133, 148", displayName: "Storm Blue", numberSmall: 0, numberLarge: 0 },
         { name: "cream", value: "237, 236, 232", displayName: "Cream", numberSmall: 0, numberLarge: 0 },
         { name: "petrol", value: "12, 67, 92", displayName: "Petrol", numberSmall: 0, numberLarge: 0 },
         { name: "tomato", value: "140, 16, 16", displayName: "Tomato", numberSmall: 0, numberLarge: 0 },
-        { name: "graphite", value: "65, 64, 66", displayName: "Graphite", numberSmall: 0, numberLarge: 0 },
-        { name: "teal", value: "15, 101, 121", displayName: "Teal", numberSmall: 0, numberLarge: 0 },
+        { name: "graphite", value: "33, 33, 33", displayName: "Graphite", numberSmall: 0, numberLarge: 0 },
+        { name: "teal", value: "15, 128, 118", displayName: "Teal", numberSmall: 0, numberLarge: 0 },
         { name: "daffodil", value: "251, 250, 150", displayName: "Daffodil", numberSmall: 0, numberLarge: 0 },        
-        { name: "saffron", value: "249, 152, 59", displayName: "Saffron", numberSmall: 0, numberLarge: 0 }
+        { name: "saffron", value: "247, 165, 87", displayName: "Saffron", numberSmall: 0, numberLarge: 0 }
     ];
 
     numberOfColumns = 0;
@@ -193,7 +192,7 @@ const globals = {
     downloadButtonDivId: "downloadButtonContainer",
     exportContainerDivId: "exportContainer",
     rowsDefault: 12,
-    smallProbability: .5,
+    smallProbability: .4,
     squareColor: { name: "duckEgg", value: "178, 198, 197", displayName: "Duck Egg" }
 };
 
