@@ -137,10 +137,10 @@ class ColorManager {
                         (blanketCircles[lastIndex - (numberOfColumns - 1)].color.name !== color.name) &&
                         (blanketCircles[lastIndex - (numberOfColumns)].color.name !== color.name) &&
                         (blanketCircles[lastIndex - (numberOfColumns + 1)].color !== color.name));
-                // console.log("lastIndex > " + numberOfColumns, "(" + lastIndex + ")", color.name, result);
+                debugLogger.log("lastIndex > " + numberOfColumns + " (" + lastIndex + ") " + color.name + " " + result);
             } else {
                 result = (previousColor.name !== color.name);
-                // console.log("lastIndex > 1", "(" + lastIndex + ")", color.name, previousColor.name, result);
+                debugLogger.log("lastIndex > 1" + " (" + lastIndex + ") " + color.name + " " + previousColor.name + " " + result);
             }
         }
 
@@ -168,22 +168,36 @@ class BlanketData {
 
     updateCircleColor(id, color) {
         let blanketCircleObject = this.getCircleById(id);
-        //console.log('blanketCircleObject found', blanketCircleObject.id, blanketCircleObject.color.name);
+        debugLogger.log('blanketCircleObject found ' + blanketCircleObject.id + " " + blanketCircleObject.color.name);
         blanketCircleObject.color = color;
-        //console.log('blanketCircleObject change', blanketCircleObject.id, blanketCircleObject.color.name);
+        debugLogger.log('blanketCircleObject change ' + blanketCircleObject.id + " " + blanketCircleObject.color.name);
         return blanketCircleObject;
     }
 
     updateCircleSize(id, size) {
         let blanketCircleObject = this.getCircleById(id);
-        //console.log('blanketCircleObject found', blanketCircleObject.id, blanketCircleObject.size);
+        debugLogger.log('blanketCircleObject found ' + blanketCircleObject.id + " " + blanketCircleObject.size);
         blanketCircleObject.size = size;
-        //console.log('blanketCircleObject change', blanketCircleObject.id, blanketCircleObject.size);
+        debugLogger.log('blanketCircleObject change ' + blanketCircleObject.id + " " + blanketCircleObject.size);
         return blanketCircleObject;
     }
 
     getCircleById(idToFind) {
         return this.blanketCircles.find( ({ id }) => id === idToFind );
+    }
+}
+
+class DebugLogger {
+    isDebug = false;
+
+    constructor() {
+        this.isDebug = globals.isDebug;
+    }
+
+    log(message) {
+        if (this.isDebug) {
+            console.log(message);
+        }
     }
 }
 
@@ -209,7 +223,8 @@ const globals = {
         { name: "teal", value: "15, 128, 118", displayName: "Teal", numberSmall: 0, numberLarge: 0 },
         { name: "daffodil", value: "251, 250, 150", displayName: "Daffodil", numberSmall: 0, numberLarge: 0 },        
         { name: "saffron", value: "247, 165, 87", displayName: "Saffron", numberSmall: 0, numberLarge: 0 }
-    ]
+    ],
+    isDebug: true
 };
 
 // ----------------
@@ -315,16 +330,16 @@ var BlanketCircle = React.createClass({
     },
     handleClick(e) {
         if (e.shiftKey || e.ctrlKey) {
-            //console.log('will change', this.state.size);
+            debugLogger.log('will change ' + this.state.size);
             let newSize = (this.state.size == "small") ? "large" : "small";
             let blanketCircleObject = blanketData.updateCircleSize(this.state.id, newSize);
             this.setState({
                 size: newSize,
                 className: "blanket-circle " + newSize
             });
-            //console.log('changed', this.state.size);
+            debugLogger.log('changed ' + this.state.size);
         } else {
-            //console.log('will change', this.state.colorName);
+            debugLogger.log('will change ' + this.state.colorName);
             let newColor = colorManager.cycleColor(this.state.color);
             let blanketCircleObject = blanketData.updateCircleColor(this.state.id, newColor);
             this.setState({ 
@@ -333,7 +348,7 @@ var BlanketCircle = React.createClass({
                 colorValue: newColor.value,
                 backgroundColor: "rgb(" + newColor.value + ")"
             });
-            //console.log('changed', this.state.colorName);
+            debugLogger.log('changed ' + this.state.colorName);
         }
     },
     componentDidUpdate() {
@@ -385,7 +400,7 @@ var DownloadButton = React.createClass({
     },
     render: function() {
         return (            
-            <a className="btn btn-primary btn-sm" id="downloadButton" href="#" role="button" onClick={this.handleDownloadClick}>Download &amp; Copy</a>
+            <a className="btn btn-primary btn-sm" id="downloadButton" href="#" role="button" onClick={this.handleDownloadClick}>Download Blanket</a>
         )
     }
 })
@@ -439,6 +454,7 @@ var Form = React.createClass({
 // ----------------
 // Start the show
 // ----------------
+const debugLogger = new DebugLogger();
 const colorManager = new ColorManager(globals.colors, globals.columnsDefault); 
 const sizeManager = new SizeManager(globals.columnsDefault);
 const blanketData = new BlanketData();
