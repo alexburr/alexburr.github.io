@@ -9,6 +9,8 @@ body {  font-size: 10pt;
 		overflow-x: hidden; }
 		
 	a { -webkit-transition: all 0.1s ease-in; -moz-transition: all 0.1s ease-in; transition: all 0.1s ease-in; }
+	a, a:visited { color: #0000ff; }
+	a:hover { color: #000099; }
 	
 	strong { font-family: 'Hind Vadodara', sans-serif; font-weight: 400; }
 	em, i { font-style: italic; }
@@ -42,6 +44,8 @@ body {  font-size: 10pt;
 
 	dl { margin: 0 0 2em 1em; }
 		dt { font-family: 'Hind Vadodara', sans-serif; font-weight: 400; color: #f90; margin-bottom: .5em; }
+		dd ul { list-style: none; margin: 0 .5em .5em 0; padding: 0; }
+		dd ul li { margin-bottom: 1em; }
 		.date { font-style: italic; margin: 0; opacity: .6; }
 		.description { margin: .5em 0 1.5em 0; }
 
@@ -65,8 +69,8 @@ body {  font-size: 10pt;
 		.skills li:nth-child(odd) { margin-left: 2em; }
 		.skills li:nth-child(even) { clear: left; }
 		.skills li:first-child { width: 90%; margin-left: 0; }
-	/*dt { float: left; }*/
-	/*.date { float: right; text-align: right; padding-right: .5em; }*/
+	dd ul { padding-left: .5em; }
+	dd ul li { border-left: 4px solid #e2e2e2; margin-bottom: .75em; padding-left: 1em; }
 	.description { clear: both; }
 }
 	
@@ -79,20 +83,29 @@ body {  font-size: 10pt;
   nav ul.print { display: block; font-size: 8pt; list-style-type: none; margin: .5em 0; padding: 0; columns: 3; text-align: center; }
   a[href]:after { content: attr(href); }
   a span { display: none; }
-  @page { margin: 0.25cm; }
+  /* @page { margin: 0.25cm; } */
+  @page { size: letter; margin: .5in .3in; }
+  @page:first { margin: .3in .3in; }
   h1, h2, h3 { text-align: left; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; border-top: none; margin: 1.25em 0 .5em 0; }
   h1 { float: none; line-height: 24pt; margin: 0; padding-bottom: .125em; }
   h2 { font-size: 12pt; }
+  h2
   h3 { font-size: 11pt; }
   article { box-shadow: none; }
   nav { font-size: 10pt; float: none; width: auto; margin: 0; clear: both; text-align: left; }
   blockquote { border: none; margin: 2em; padding: 0; text-align: left; page-break-inside: avoid; border-radius: 0; } 
   ul.skills { columns: 2; column-gap: 1em; font-size: inherit; }
   ul.skills li { margin-bottom: .5em; padding: 0; } 
-  dl { margin-left: 0; columns: 2; column-gap: 1em; }
+  dl { margin-left: 0; columns: 2; column-gap: 1.5em; }
+  dl.big { columns: 1; }
+  dl.big dd ul li { font-size: 90%; }
+  dl.big + dl { margin-top: 2em; page-break-before: always; }
   dd.date, dd.description { margin-left: 1em; margin-top: 0; }
+  dl.big dd.date { margin-top: .5em; margin-bottom: .5em; }
+  /* dd.date { break-before: avoid-column; break-after: avoid-column; } */
   dd.description { margin-bottom: .5em; break-before: avoid; }
+  /* #additional + dl dt { break-before: column avoid-page; } */
   dt { font-size: 10pt; margin-bottom: 0; break-after: avoid; }
 }
