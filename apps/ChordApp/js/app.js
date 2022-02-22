@@ -243,6 +243,7 @@ var scales = [
     new Scale("E♭", ["E♭", "F", "G", "A♭", "B♭", "C", "D"]),
     new Scale("E", ["E", "F♯", "G♯", "A", "B", "C♯", "D♯"]),
     new Scale("E♯", ["E♯", "F𝄪", "G𝄪", "A♯", "B♯", "C𝄪", "D𝄪"]),
+    new Scale("F♭", ["F♭", "G♭", "A♭", "B♭♭", "C♭", "D♭", "E♭"]),
     new Scale("F", ["F", "G", "A", "B♭", "C", "D", "E"]),
     new Scale("F♯", ["F♯", "G♯", "A♯", "B", "C♯", "D♯", "E♯"]),
     new Scale("G♭", ["G♭", "A♭", "B♭", "C♭", "D♭", "E♭", "F"]),
@@ -252,8 +253,8 @@ var scales = [
     new Scale("A", ["A", "B", "C♯", "D", "E", "F♯", "G♯"]),
     new Scale("A♯", ["A♯", "B♯", "C𝄪", "D♯", "E♯", "F𝄪", "G𝄪"]),
     new Scale("B♭", ["B♭", "C", "D", "E♭", "F", "G", "A"]),
-    new Scale("B", ["B", "C♯", "D♯", "E", "F", "G♯", "A♯"]),
-    new Scale("B♯", ["B♯", "C𝄪", "D𝄪", "E♯", "F♯", "G𝄪", "A𝄪"]),
+    new Scale("B", ["B", "C♯", "D♯", "E", "F♯", "G♯", "A♯"]),
+    new Scale("B♯", ["B♯", "C𝄪", "D𝄪", "E♯", "F𝄪", "G𝄪", "A𝄪"]),
     new Scale("C♭", ["C♭", "D♭", "E♭", "F♭", "G♭", "A♭", "B♭"]),
 ];
 var chordTypeGroups = new ChordTypeGroup([
