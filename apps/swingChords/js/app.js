@@ -26,6 +26,7 @@ define("Models/ChordGroup", ["require", "exports"], function (require, exports) 
 define("Data/allChords", ["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.allChords = void 0;
     exports.allChords = [
         {
             name: "Lowest Note On the Fifth String",
@@ -259,6 +260,7 @@ define("Models/ImprovShape", ["require", "exports", "Models/Chord"], function (r
 define("Data/allImprovShapes", ["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.allImprovShapes = void 0;
     exports.allImprovShapes = [
         {
             name: "Shape 1: Major Triad",
@@ -577,6 +579,7 @@ define("Implementations/SvgGenerator", ["require", "exports"], function (require
 define("Implementations/SwingChordsApp", ["require", "exports", "Implementations/SvgGenerator", "Data/allChords", "Data/allImprovShapes"], function (require, exports, SvgGenerator_1, allChords_1, allImprovShapes_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.SwingChordsApp = void 0;
     // NOTE: This cannot be 'export default' while we are using requirejs
     class SwingChordsApp {
         // Construction ------------------------------------------------
