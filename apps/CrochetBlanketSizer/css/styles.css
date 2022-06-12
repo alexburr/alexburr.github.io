@@ -1,11 +1,9 @@
  body { padding: 1em; }
  
- h1, h6 { 
+ h1 { 
+    margin-bottom: .5em;
     text-align: center;
  }
- h1 { margin-bottom: 0em; }
- h6 { margin-bottom: 1em; }
- h6 span { font-family: monospace; color: red; }
 
  #downloadButtonContainer {
      padding: 1em;
@@ -19,22 +17,25 @@
  }
 .blanket-row { display: table-row; }
 .blanket-square { 
+    border: 1px solid rgba(0,0,0,0.125);
     display: table-cell;
     height: 1.5em;
     vertical-align: middle;
     width: 1.5em; 
 }
 
-.blanket-circle {
+.small-circle,
+.large-circle {
+    border: 1px solid rgba(0,0,0,0.0625);
     border-radius: 100%;
     display: block;
     margin: 0 auto;
 }
-.blanket-circle.small { 
+.small-circle { 
     height: .5em; 
     width: .5em; 
 }
-.blanket-circle.large { 
+.large-circle { 
     height: .8em; 
     width: .8em; 
 }
