@@ -339,6 +339,20 @@ var chordTypeGroups = new ChordTypeGroup([
             new ChordNote(5, Accidental.natural),
             new ChordNote(7, Accidental.flat),
             new ChordNote(2, Accidental.natural)
+        ], null),
+        new ChordType("Major 9th", ["maj9", "Ma9", "M9", "Ma9", "ma9", "△9"], [
+            new ChordNote(1, Accidental.natural),
+            new ChordNote(3, Accidental.natural),
+            new ChordNote(5, Accidental.natural),
+            new ChordNote(7, Accidental.natural),
+            new ChordNote(2, Accidental.natural)
+        ], null),
+        new ChordType("Minor 9th", ["min9", "m9", "Mi9", "mi9", "-9"], [
+            new ChordNote(1, Accidental.natural),
+            new ChordNote(3, Accidental.flat),
+            new ChordNote(5, Accidental.natural),
+            new ChordNote(7, Accidental.flat),
+            new ChordNote(2, Accidental.natural)
         ], null)
     ])
 ]);
@@ -346,36 +360,72 @@ var chordTypeGroups = new ChordTypeGroup([
 /// <reference path="chords.ts" />
 /// <reference path="chord.ts" />
 /// <reference path="vars.ts" />
-window.onload = () => {
-    var chordRootSelect = document.getElementById("chordRoot");
-    var chordTypeSelect = document.getElementById("chordType");
-    for (var i = 0; i < scales.length; i++) {
-        var scale = scales[i];
-        var option = document.createElement("option");
-        option.text = scale.root;
-        chordRootSelect.add(option);
+class ChordDisplay {
+    // ---------------------------
+    constructor(chordRootSelect, chordTypeSelect, outputDiv) {
+        this.chordRootSelect = chordRootSelect;
+        this.chordTypeSelect = chordTypeSelect;
+        this.outputDiv = outputDiv;
+        this.setupSelectValues();
+        this.addEventListeners();
+        this.displayChord();
     }
-    for (var j = 0; j < chordTypeGroups.chordTypes.length; j++) {
-        var optgroup = document.createElement("optgroup");
-        optgroup.label = chordTypeGroups.chordTypes[j].groupName;
-        for (var k = 0; k < chordTypeGroups.chordTypes[j].chordTypes.length; k++) {
-            var chordType = chordTypeGroups.chordTypes[j].chordTypes[k];
-            var option = document.createElement("option");
-            option.text = chordType.name;
-            optgroup.appendChild(option);
-        }
-        chordTypeSelect.add(optgroup);
-    }
-    document.getElementById("button").addEventListener("click", function (event) {
-        event.preventDefault();
-        var chordType = window["chordType"].value;
-        var chordRoot = window["chordRoot"].value;
+    // ---------------------------
+    displayChord() {
+        var chordType = this.chordTypeSelect.value;
+        var chordRoot = this.chordRootSelect.value;
         var chords = new Chords([
             new Chord(chordRoot + " " + chordType, chordTypeGroups, scales)
         ]);
         var output = chords.getChordsForDisplay();
-        document.getElementById("output").innerHTML = output;
-    }, false);
+        this.outputDiv.innerHTML = output;
+    }
+    // ---------------------------
+    setupSelectValues() {
+        for (var i = 0; i < scales.length; i++) {
+            var scale = scales[i];
+            var option = document.createElement("option");
+            option.text = scale.root;
+            chordRootSelect.add(option);
+        }
+        for (var j = 0; j < chordTypeGroups.chordTypes.length; j++) {
+            var optgroup = document.createElement("optgroup");
+            optgroup.label = chordTypeGroups.chordTypes[j].groupName;
+            for (var k = 0; k < chordTypeGroups.chordTypes[j].chordTypes.length; k++) {
+                var chordType = chordTypeGroups.chordTypes[j].chordTypes[k];
+                var option = document.createElement("option");
+                option.text = chordType.name;
+                optgroup.appendChild(option);
+            }
+            chordTypeSelect.add(optgroup);
+        }
+    }
+    // ---------------------------
+    addEventListeners() {
+        this.chordRootSelect.addEventListener("change", (event) => {
+            event.preventDefault();
+            this.displayChord();
+        });
+        this.chordTypeSelect.addEventListener("change", (event) => {
+            event.preventDefault();
+            this.displayChord();
+        });
+    }
+}
+/// <reference path="scale.ts" />
+/// <reference path="chords.ts" />
+/// <reference path="chord.ts" />
+/// <reference path="vars.ts" />
+/// <reference path="chordDisplay.ts" />
+var chordRootSelect;
+var chordTypeSelect;
+var outputDiv;
+var chordDisplay;
+window.onload = () => {
+    chordRootSelect = document.getElementById("chordRoot");
+    chordTypeSelect = document.getElementById("chordType");
+    outputDiv = document.getElementById("output");
+    chordDisplay = new ChordDisplay(chordRootSelect, chordTypeSelect, outputDiv);
 };
 class Note {
     // ---------------------------
