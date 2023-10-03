@@ -9,8 +9,8 @@ body {  font-size: 10pt;
 		overflow-x: hidden; }
 		
 	a { -webkit-transition: all 0.1s ease-in; -moz-transition: all 0.1s ease-in; transition: all 0.1s ease-in; }
-	a, a:visited { color: #0000ff; }
-	a:hover { color: #000099; }
+	a, a:visited { color: #0033cc; }
+	a:hover { color: #003399; }
 	
 	strong { font-family: 'Hind Vadodara', sans-serif; font-weight: 400; }
 	em, i { font-style: italic; }
@@ -36,14 +36,14 @@ body {  font-size: 10pt;
 	blockquote { clear: both; padding: 1em 1.25em; margin: .5em; }
 	
 	cite { display: block; font-style: italic; margin: 1em 0 .125em 0; text-align: right; color: #999; }
-	p { margin: 0 0 1em 1em; }
+	p { margin: 0 1em 1em 1em; }
 		blockquote p { margin: 0 0 .5em 0; }
 		
 	.skills { list-style: none; overflow: auto; margin: 0 0 .5em 0; font-size: 10pt; padding-left: .5em; }
 		.skills li { padding-left: 1em; margin-bottom: 1.5em; }
 
-	dl { margin: 0 0 2em 1em; }
-		dt { font-family: 'Hind Vadodara', sans-serif; font-weight: 400; color: #f90; margin-bottom: .5em; }
+	dl { margin: 0 1em 2em 1em; }
+		dt { font-family: 'Hind Vadodara', sans-serif; font-weight: 400; color: #c60; margin-bottom: .5em; }
 		dd ul { list-style: none; margin: 0 .5em .5em 0; padding: 0; }
 		dd ul li { margin-bottom: 1em; }
 		.date { font-style: italic; margin: 0; opacity: .6; }
@@ -56,6 +56,7 @@ body {  font-size: 10pt;
 	h1 { font-size: 24pt; }
 	nav { border: none; font-size: 12pt; text-align: left; }
 	nav a span { display: inline; margin-left: .5em; }
+	p { text-align: justify; }
 }
 
 @media only screen and (min-width: 66em) {
