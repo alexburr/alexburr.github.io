@@ -89,20 +89,20 @@ class Chord {
     // ---------------------------
     outputDisplay() {
         var output = "";
-        output += "<th class=\"text-xs-center\">" + this.name + "</th>";
-        output += "<td>";
+        output += "<tr><th>Chord</th><td><strong>" + this.name + "</strong></td></tr>";
+        output += "<tr><th>Names</th><td>";
         for (var j = 0; j < this.chordType.names.length; j++) {
             if (j != 0) {
                 output += ", ";
             }
             output += this.root + this.chordType.names[j];
         }
-        output += "</td>";
-        output += "<td>";
+        output += "</td></tr>";
+        output += "<tr><th>Notes</th><td>";
         for (var k = 0; k < this.noteNames.length; k++) {
             output += "<span>" + this.noteNames[k] + "</span>";
         }
-        output += "</td>";
+        output += "</td></tr>";
         return output;
     }
     // ---------------------------
@@ -219,12 +219,11 @@ class Chords {
     }
     // ---------------------------
     getChordsForDisplay() {
-        var output = "<table class=\"table table-hover table-sm text-xs-center\">";
-        output += "<thead><tr><th class=\"text-xs-center\">Chord</th><th class=\"text-xs-center\">Names</th><th class=\"text-xs-center\">Notes</th></tr></thead><tbody><tr>";
+        var output = "<table class=\"table table-responsive table-hover\">";
         for (var i = 0; i < this.chords.length; i++) {
             output += this.chords[i].outputDisplay();
         }
-        output += "</tr></tbody></table>";
+        output += "</tbody></table>";
         return output;
     }
 }
@@ -311,7 +310,7 @@ var chordTypeGroups = new ChordTypeGroup([
             new ChordNote(5, Accidental.flat),
             new ChordNote(6, Accidental.natural) // fix this for double-flat?
         ], null),
-        new ChordType("Half-Diminished 7th", ["<sup>ø</sup>", "<sup>ø</sup>7", "min7♭5", "m7♭5"], [
+        new ChordType("Half-Diminished 7th", ["<sup>ø</sup>", "<sup>ø</sup>7", "min7♭5", "m7♭5", "-7♭5"], [
             new ChordNote(1, Accidental.natural),
             new ChordNote(3, Accidental.flat),
             new ChordNote(5, Accidental.flat),
@@ -353,6 +352,57 @@ var chordTypeGroups = new ChordTypeGroup([
             new ChordNote(5, Accidental.natural),
             new ChordNote(7, Accidental.flat),
             new ChordNote(2, Accidental.natural)
+        ], null),
+        new ChordType("11th", ["11"], [
+            new ChordNote(1, Accidental.natural),
+            new ChordNote(3, Accidental.natural),
+            new ChordNote(5, Accidental.natural),
+            new ChordNote(7, Accidental.flat),
+            new ChordNote(2, Accidental.natural),
+            new ChordNote(4, Accidental.natural)
+        ], null),
+        new ChordType("Major ♯11", ["maj#11", "Ma#11", "M#11", "Ma#11", "ma#11", "△#11"], [
+            new ChordNote(1, Accidental.natural),
+            new ChordNote(3, Accidental.natural),
+            new ChordNote(5, Accidental.natural),
+            new ChordNote(7, Accidental.natural),
+            new ChordNote(2, Accidental.natural),
+            new ChordNote(4, Accidental.sharp)
+        ], null),
+        new ChordType("Minor 11", ["min11", "m11", "Mi11", "mi11", "-11"], [
+            new ChordNote(1, Accidental.natural),
+            new ChordNote(3, Accidental.flat),
+            new ChordNote(5, Accidental.natural),
+            new ChordNote(7, Accidental.flat),
+            new ChordNote(2, Accidental.natural),
+            new ChordNote(4, Accidental.natural)
+        ], null),
+        new ChordType("13th", ["13"], [
+            new ChordNote(1, Accidental.natural),
+            new ChordNote(3, Accidental.natural),
+            new ChordNote(5, Accidental.natural),
+            new ChordNote(7, Accidental.flat),
+            new ChordNote(2, Accidental.natural),
+            new ChordNote(4, Accidental.natural),
+            new ChordNote(6, Accidental.natural)
+        ], null),
+        new ChordType("Major 13", ["maj13", "Ma13", "M13", "Ma13", "ma13", "△13"], [
+            new ChordNote(1, Accidental.natural),
+            new ChordNote(3, Accidental.natural),
+            new ChordNote(5, Accidental.natural),
+            new ChordNote(7, Accidental.natural),
+            new ChordNote(2, Accidental.natural),
+            new ChordNote(4, Accidental.sharp),
+            new ChordNote(6, Accidental.natural)
+        ], null),
+        new ChordType("Minor 13", ["min13", "m13", "Mi13", "mi13", "-13"], [
+            new ChordNote(1, Accidental.natural),
+            new ChordNote(3, Accidental.flat),
+            new ChordNote(5, Accidental.natural),
+            new ChordNote(7, Accidental.flat),
+            new ChordNote(2, Accidental.natural),
+            new ChordNote(4, Accidental.natural),
+            new ChordNote(6, Accidental.natural)
         ], null)
     ])
 ]);
