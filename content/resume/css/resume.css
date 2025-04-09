@@ -138,7 +138,7 @@ main section dl dt, main section dl dd {
 main section dl dt {
   color: #c60;
   font-weight: 600;
-  width: 66%;
+  width: 60%;
 }
 main section dl dt span {
   color: rgb(0, 0, 0);
@@ -146,7 +146,7 @@ main section dl dt span {
 }
 main section dl dt + dd {
   text-align: right;
-  width: 33%;
+  width: 40%;
 }
 main section dl dd.description {
   width: 100%;
@@ -201,7 +201,7 @@ main section dl dd + dt, main section dl dd + dt + dd {
     display: none;
   }
   header ul.web-links.print {
-    border-top: 1pt dotted black;
+    border-top: 3pt solid rgb(204, 204, 204);
     padding: 0.25em 0;
     display: flex;
     font-size: 0.75rem;
@@ -227,13 +227,14 @@ main section dl dd + dt, main section dl dd + dt + dd {
     color: black;
     font-size: 1rem;
     margin-bottom: 0;
-    border-bottom: 1px dotted black;
+    border-bottom: 2pt solid rgb(204, 204, 204);
   }
   main section dl {
     margin-top: 0.5em;
   }
   main section dl dt {
     color: black;
+    min-width: 50%;
   }
   main section dd.description ul {
     margin: 0.25em;
