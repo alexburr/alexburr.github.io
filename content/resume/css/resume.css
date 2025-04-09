@@ -154,6 +154,24 @@ main section dl dd.description {
 main section dl dd + dt, main section dl dd + dt + dd {
   margin-top: 1em;
 }
+main #skills ul {
+  column-count: 3;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+main #skills ul li {
+  break-inside: avoid;
+  font-weight: 600;
+  margin-bottom: 0.4em;
+}
+main #skills ul li:first-child {
+  margin-top: -0.33em;
+}
+main #skills ul li span {
+  font-weight: 400;
+  display: block;
+}
 
 @media only screen and (max-width: 36em) {
   header h1 {
@@ -173,9 +191,9 @@ main section dl dd + dt, main section dl dd + dt + dd {
     color: black;
   }
   body {
-    font-size: 0.8rem;
+    font-size: 0.77rem;
     border-top: 2em solid rgb(204, 204, 204);
-    padding: 0.25in 0.33in;
+    padding: 0.25in 0.5in;
   }
   header {
     border: none;
@@ -229,7 +247,7 @@ main section dl dd + dt, main section dl dd + dt + dd {
     margin-bottom: 0;
     border-bottom: 2pt solid rgb(204, 204, 204);
   }
-  main section dl {
+  main section dl, main section#skills ul {
     margin-top: 0.5em;
   }
   main section dl dt {

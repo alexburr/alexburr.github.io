@@ -111,6 +111,23 @@ body {
                 dd + dt, dd + dt + dd { margin-top: 1em; } 
             }
         }
+
+        #skills {
+            ul {
+                column-count: 3;
+                list-style-type: none;
+                margin: 0; padding: 0; 
+                li {
+                    break-inside: avoid;
+                    font-weight: 600;
+                    margin-bottom: .4em; 
+                    &:first-child { margin-top: -.33em; }
+                    span {
+                        font-weight: 400; display: block;
+                    }
+                }
+            }
+        }
     }
 
 @media only screen and (max-width: 36em) {
@@ -126,7 +143,7 @@ body {
 	
 @media print {
     html { background: transparent; color: black; }
-    body { font-size: .8rem; border-top: 2em solid $color-gray-light; padding: .25in .33in; }
+    body { font-size: .77rem; border-top: 2em solid $color-gray-light; padding: .25in .5in; }
     header { 
         border: none; 
         flex-direction: row;
@@ -159,7 +176,7 @@ body {
             padding: 0; 
             
             h2 { color: black; font-size: 1rem; margin-bottom: 0; border-bottom: 2pt solid $color-gray-light; }
-            dl { margin-top: .5em; }
+            dl, &#skills ul { margin-top: .5em; }
             dl dt { color: black; min-width: 50%; }
             dd.description ul { margin: .25em; }
         }
