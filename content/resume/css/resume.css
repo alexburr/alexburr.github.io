@@ -1,113 +1,244 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;600&family=Roboto:ital@0;1&display=swap');
-
-html { background: #fff; font-family: 'Roboto', sans-serif; padding: 0; }
-
-body {  font-size: 10pt;
-        line-height: 1.4;
-        font-weight: normal; 
-        color: #333;
-        padding: 0;
-		margin: 0;
-		overflow-x: hidden; }
-		
-	a { -webkit-transition: all 0.1s ease-in; -moz-transition: all 0.1s ease-in; transition: all 0.1s ease-in; }
-	a, a:visited { color: #0033cc; }
-	a:hover { color: #003399; }
-	
-	strong { font-family: sans-serif; font-weight: 400; }
-	em, i { font-style: italic; }
-	
-	article { margin: 0 auto; padding: 1em; }
-	
-	h1,h2,h3 { font-family: 'Dosis', sans-serif; font-weight: 600; clear: both; text-align: center; text-transform: uppercase; }
-		h2, h3 { border-bottom: 1px dotted #ccc; border-top: 1px dotted #ccc; line-height: 1.6; margin: 1em 0; }
-	
-	h1 { border-bottom: 1px solid #ccc; font-size: 24pt; margin-top: 0; margin-bottom: .25em; }
-	h2 { font-size: 14pt; color: #666; }
-	h3 { font-size: 12pt; color: #999; }
-	
-	.clear { clear: both; }
-	
-	nav { font-size: 14pt; font-style: normal; color: #808080; text-align: center; }
-		nav a { margin: 0 .5em; display: inline-block; text-decoration: none; }
-			nav a:link, nav a:visited, nav a:active { color: #666; }
-			nav a:hover { color: #000; -webkit-transform: translate(0, -1px); -moz-transform: translate(0, -1px); transform: translate(0, -1px); }
-			nav a span { display: none; }
-	nav ul.print { display: none; }
-
-	blockquote { clear: both; padding: 1em 1.25em; margin: .5em; }
-	
-	cite { display: block; font-style: italic; margin: 1em 0 .125em 0; text-align: right; color: #999; }
-	p { margin: 0 1em 1em 1em; }
-		blockquote p { margin: 0 0 .5em 0; }
-		
-	.skills { list-style: none; overflow: auto; margin: 0 0 .5em 0; font-size: 10pt; padding-left: .5em; }
-		.skills li { padding-left: 1em; margin-bottom: 1.5em; }
-
-	dl { margin: 0 1em 2em 1em; }
-		dt { font-family: 'Dosis', sans-serif; font-weight: 400; color: #c60; margin-bottom: .5em; font-size: 12pt; }
-		dd ul { list-style: none; margin: 0 .5em .5em 0; padding: 0; }
-		dd ul li { margin-bottom: 1em; }
-		.date { font-style: italic; margin: 0; opacity: .6; }
-		.date + dt { margin-top: .5em; }
-		.description { margin: .5em 0 1.5em 0; }
-
-@media only screen and (min-width: 36em) {
-	body { background: #e0e0e0; font-size: 11pt; padding: 1em; }
-	article { background: #fff; box-shadow: 1em 1em .5em rgba(0,0,0,0.025); padding: 1.5em; }
-	h1, h2, h3 { border: none; text-align: left; }
-	h1 { font-size: 24pt; }
-	nav { border: none; font-size: 12pt; text-align: left; }
-	nav a span { display: inline; margin-left: .5em; }
-	p { text-align: justify; }
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+html {
+  background-color: rgb(204, 204, 204);
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  padding: 0;
 }
 
-@media only screen and (min-width: 66em) {
-	body { padding: 2em 1em; }
-	article { max-width: 960px; }
-	h1 { float: left; font-size: 32pt; }
-	h2 { font-size: 18pt; }
-	h3 { font-size: 14pt; }
-	nav { float: right; text-align: right; margin: 1.5em 2em; }	
-	.skills li { border-left: 4px solid #e2e2e2; float: left; width: 44%; }
-		.skills li:nth-child(odd) { margin-left: 2em; }
-		.skills li:nth-child(even) { clear: left; }
-		.skills li:first-child { width: 90%; margin-left: 0; }
-	dd ul { padding-left: .5em; }
-	dd ul li { border-left: 4px solid #e2e2e2; margin-bottom: .75em; padding-left: 1em; }
-	.description { clear: both; }
+body {
+  align-items: center;
+  line-height: 1.4;
+  font-weight: normal;
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
 }
-	
+
+a {
+  -webkit-transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+}
+
+a, a:visited {
+  color: rgb(0, 51, 204);
+}
+
+a:hover {
+  color: rgb(0, 51, 153);
+}
+
+strong {
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+em, i {
+  font-style: italic;
+}
+
+h1, h2, h3 {
+  font-family: "Dosis", sans-serif;
+  font-weight: 600;
+  clear: both;
+  text-transform: uppercase;
+}
+
+header, main {
+  background-color: rgb(255, 255, 255);
+  max-width: 66em;
+  width: 100%;
+}
+
+header {
+  border-top: 3em solid rgb(0, 51, 153);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1em;
+}
+header h1 {
+  font-size: 3.2rem;
+  margin-bottom: 0;
+  margin-top: 0.5em;
+  text-align: center;
+}
+header h2 {
+  color: rgb(102, 102, 102);
+  font-size: 1.6rem;
+  margin-top: 0;
+  letter-spacing: 0.125em;
+  text-align: center;
+}
+header ul.web-links {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  font-size: 1.4rem;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  justify-content: space-evenly;
+}
+header ul.web-links li {
+  display: inline-block;
+}
+header ul.web-links li a {
+  margin: 0 0.5em;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+}
+header ul.web-links li a:link, header ul.web-links li a:visited, header ul.web-links li a:active {
+  color: #666;
+}
+header ul.web-links li a:hover {
+  color: #000;
+  -webkit-transform: translate(0, -1px);
+  -moz-transform: translate(0, -1px);
+  transform: translate(0, -1px);
+}
+header ul.web-links li a span {
+  font-size: 1rem;
+  display: block;
+}
+header ul.web-links.print {
+  display: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+main #summary {
+  padding: 0 2em;
+}
+main section {
+  margin: 0;
+  padding: 0 1.5em;
+}
+main section h2 {
+  border-bottom: 1px solid rgb(102, 102, 102);
+  font-size: 1.4rem;
+}
+main section ul {
+  margin-left: 0;
+  padding-left: 1.25em;
+}
+main section dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+main section dl dt, main section dl dd {
+  margin: 0;
+}
+main section dl dt {
+  color: #c60;
+  font-weight: 600;
+  width: 66%;
+}
+main section dl dt span {
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+}
+main section dl dt + dd {
+  text-align: right;
+  width: 33%;
+}
+main section dl dd.description {
+  width: 100%;
+}
+main section dl dd + dt, main section dl dd + dt + dd {
+  margin-top: 1em;
+}
+
+@media only screen and (max-width: 36em) {
+  header h1 {
+    font-size: 2.4rem;
+  }
+  header h2 {
+    font-size: 1.4rem;
+    letter-spacing: normal;
+  }
+  header ul.web-links li a span {
+    display: none;
+  }
+}
 @media print {
-  * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; 
-		font-family: sans-serif; } 
-  body { font-size: 9pt; }
-  a, a:visited { color: #444 !important; text-decoration: underline;  }
-  nav a { display: none !important; }
-  nav ul.print { display: block; font-size: 8pt; list-style-type: none; margin: .5em 0; padding: 0; columns: 3; text-align: center; }
-  a[href]:after { content: attr(href); }
-  a span { display: none; }
-  @page { size: letter; margin: .5in .3in; }
-  @page:first { margin: .3in .3in; }
-  h1, h2, h3 { text-align: left; }
-  p, h2, h3 { orphans: 3; widows: 3; }
-  h2, h3 { page-break-after: avoid; border-top: none; margin: 1.5em 0 .5em 0; }
-  h1 { float: none; line-height: 24pt; margin: 0; padding-bottom: .125em; }
-  h2 { font-size: 12pt; }
-  h2
-  h3 { font-size: 11pt; }
-  article { box-shadow: none; }
-  nav { font-size: 10pt; float: none; width: auto; margin: 0 0 3em 0; clear: both; text-align: left; }
-  blockquote { border: none; margin: 2em; padding: 0; text-align: left; page-break-inside: avoid; border-radius: 0; } 
-  ul.skills { columns: 2; column-gap: 3em; font-size: inherit; }
-  ul.skills li { margin-bottom: .5em; padding: 0; } 
-  dl { margin-left: 0; columns: 2; column-gap: 3em; column-rule: 1pt solid #ccc; }
-  dl.big { columns: 1; }
-  dl.big dd ul li { font-size: 90%; }
-  dl.big + dl:not(.big) { page-break-after: always; }
-  dd.date, dd.description { margin-left: 1em; text-align: justify; }
-  dl.big dd.date { margin-top: .5em; margin-bottom: .5em; }
-  dd.description { margin-bottom: 1em; break-before: avoid; }
-  dt { font-size: 10pt; margin-bottom: 0; break-after: avoid; }
+  html {
+    background: transparent;
+    color: black;
+  }
+  body {
+    font-size: 0.75rem;
+    border-top: 2em solid rgb(204, 204, 204);
+    padding: 1em 0.33in;
+  }
+  header {
+    border: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: none;
+  }
+  header h1 {
+    font-size: 2rem;
+    margin-top: 0;
+    width: 50%;
+    text-align: left;
+  }
+  header h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    width: 50%;
+    letter-spacing: normal;
+    padding-top: 0.5em;
+    text-align: right;
+  }
+  header ul.web-links {
+    display: none;
+  }
+  header ul.web-links.print {
+    border-top: 1pt dotted black;
+    padding: 0.25em 0;
+    display: flex;
+    font-size: 0.75rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+  header ul.web-links.print li {
+    flex-basis: 30%;
+  }
+  header ul.web-links.print li:nth-child(2), header ul.web-links.print li:nth-child(5) {
+    text-align: center;
+  }
+  header ul.web-links.print li:nth-child(3), header ul.web-links.print li:nth-child(6) {
+    text-align: right;
+  }
+  main {
+    max-width: none;
+  }
+  main section {
+    padding: 0;
+  }
+  main section h2 {
+    color: black;
+    font-size: 1rem;
+    margin-bottom: 0;
+    border-bottom: 1px dotted black;
+  }
+  main section dl {
+    margin-top: 0.5em;
+  }
+  main section dl dt {
+    color: black;
+  }
+  main section dd.description ul {
+    margin: 0.25em;
+  }
 }
+
+/*# sourceMappingURL=resume.css.map */

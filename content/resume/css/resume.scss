@@ -126,11 +126,12 @@ body {
 	
 @media print {
     html { background: transparent; color: black; }
-    body { font-size: .75rem; }
+    body { font-size: .75rem; border-top: 2em solid $color-gray-light; padding: 1em .33in; }
     header { 
         border: none; 
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: wrap;        
+        max-width: none;
         h1 { font-size: 2rem; margin-top: 0; width: 50%; text-align: left; }
         h2 { font-size: 1.2rem; margin: 0; width: 50%; letter-spacing: normal; padding-top: .5em; text-align: right; }
         ul.web-links { 
@@ -153,6 +154,7 @@ body {
         }
     }
     main {
+        max-width: none;
         section { 
             padding: 0; 
             
