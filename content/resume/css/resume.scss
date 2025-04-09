@@ -1,0 +1,167 @@
+@use 'sass:color';
+@charset "UTF-8"; 
+
+// Imports
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+// Variables
+$color-white: rgba(255, 255, 255, 1);
+$color-black: rgba(0, 0, 0, 1);
+$color-gray-dark: rgba(51, 51, 51, 1);
+$color-gray-light: rgba(204, 204, 204, 1);
+$color-gray-mid: rgba(102, 102, 102, 1);
+$color-blue: rgba(0, 51, 204, 1);
+$color-blue-dark: rgba(0, 51, 153, 1);
+$color-copper: #c60;
+
+html { 
+       background-color: $color-gray-light; 
+       font-family: 'Lato', sans-serif; 
+       font-size: 14px;
+       padding: 0; 
+    }
+
+body {  
+        align-items: center;
+        line-height: 1.4;
+        font-weight: normal; 
+        color: $color-black;        
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+		margin: 0;
+		overflow-x: hidden; 
+    }
+		
+	a { -webkit-transition: all 0.1s ease-in; -moz-transition: all 0.1s ease-in; transition: all 0.1s ease-in; }
+	a, a:visited { color: $color-blue; }
+	a:hover { color: $color-blue-dark; }
+	
+	b, strong { font-weight: 600; }
+	em, i { font-style: italic; }
+	
+	h1,h2,h3 { font-family: 'Dosis', sans-serif; font-weight: 600; clear: both; text-transform: uppercase; }
+
+    header, main { background-color: $color-white; max-width: 66em; width: 100%; }
+
+    header {
+        border-top: 3em solid $color-blue-dark;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1em;
+
+        h1 { font-size: 3.2rem; margin-bottom: 0; margin-top: .5em; text-align: center; }
+        h2 { color: $color-gray-mid; font-size: 1.6rem; margin-top: 0; letter-spacing: .125em; text-align: center; }
+
+        ul.web-links {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            list-style-type: none;
+            font-size: 1.4rem; 
+            font-style: normal; 
+            margin: 0;
+            padding: 0;
+            justify-content: space-evenly;
+
+            li { 
+                display: inline-block; 
+
+                a {
+                     margin: 0 .5em; display: inline-block; text-decoration: none; text-align: center;
+                     
+                     &:link, &:visited, &:active { color: #666; }
+                     &:hover { color: #000; -webkit-transform: translate(0, -1px); -moz-transform: translate(0, -1px); transform: translate(0, -1px); }
+
+                     span { font-size: 1rem; display: block; }
+                }
+            }
+            
+            &.print { display: none; }
+        }
+    }
+
+    main { 
+        display: flex; flex-direction: column; 
+
+        #summary {
+            padding: 0 2em;
+        }
+
+        section {
+            margin: 0;
+            padding: 0 1.5em;
+
+            h2 {
+                border-bottom: 1px solid $color-gray-mid;
+                font-size: 1.4rem;
+            }
+
+            ul { margin-left: 0; padding-left: 1.25em; }
+
+            dl { 
+                display: flex;
+                flex-wrap: wrap;                
+                
+                dt, dd { margin: 0; }
+                dt { color: $color-copper; font-weight: 600; width: 60%; }
+                dt span { color: $color-black; font-weight: 400; }
+                dt + dd { text-align: right; width: 40%; }
+                dd.description { width: 100%; }
+                dd + dt, dd + dt + dd { margin-top: 1em; } 
+            }
+        }
+    }
+
+@media only screen and (max-width: 36em) {
+    header { 
+        h1 { font-size: 2.4rem; }
+        h2 { font-size: 1.4rem; letter-spacing: normal; }
+        ul.web-links li a span { display: none; } 
+    }
+}
+
+@media only screen and (max-width: 66em) {
+}
+	
+@media print {
+    html { background: transparent; color: black; }
+    body { font-size: .8rem; border-top: 2em solid $color-gray-light; padding: .25in .33in; }
+    header { 
+        border: none; 
+        flex-direction: row;
+        flex-wrap: wrap;        
+        max-width: none;
+        h1 { font-size: 2rem; margin-top: 0; width: 50%; text-align: left; }
+        h2 { font-size: 1.2rem; margin: 0; width: 50%; letter-spacing: normal; padding-top: .5em; text-align: right; }
+        ul.web-links { 
+            display: none; 
+
+            &.print { 
+                border-top: 3pt solid $color-gray-light;
+                padding: .25em 0;
+                display: flex; 
+                font-size: .75rem; 
+                justify-content: space-between;
+                width: 100%;
+
+                li { 
+                    flex-basis: 30%; 
+                    &:nth-child(2), &:nth-child(5) { text-align: center; }
+                    &:nth-child(3), &:nth-child(6) { text-align: right; }
+                }
+            }
+        }
+    }
+    main {
+        max-width: none;
+        section { 
+            padding: 0; 
+            
+            h2 { color: black; font-size: 1rem; margin-bottom: 0; border-bottom: 2pt solid $color-gray-light; }
+            dl { margin-top: .5em; }
+            dl dt { color: black; min-width: 50%; }
+            dd.description ul { margin: .25em; }
+        }
+    }
+}
