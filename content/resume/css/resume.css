@@ -32,9 +32,8 @@ a:hover {
   color: rgb(0, 51, 153);
 }
 
-strong {
-  font-family: sans-serif;
-  font-weight: 400;
+b, strong {
+  font-weight: 600;
 }
 
 em, i {
@@ -174,9 +173,9 @@ main section dl dd + dt, main section dl dd + dt + dd {
     color: black;
   }
   body {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     border-top: 2em solid rgb(204, 204, 204);
-    padding: 1em 0.33in;
+    padding: 0.25in 0.33in;
   }
   header {
     border: none;

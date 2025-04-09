@@ -37,7 +37,7 @@ body {
 	a, a:visited { color: $color-blue; }
 	a:hover { color: $color-blue-dark; }
 	
-	strong { font-family: sans-serif; font-weight: 400; }
+	b, strong { font-weight: 600; }
 	em, i { font-style: italic; }
 	
 	h1,h2,h3 { font-family: 'Dosis', sans-serif; font-weight: 600; clear: both; text-transform: uppercase; }
@@ -126,7 +126,7 @@ body {
 	
 @media print {
     html { background: transparent; color: black; }
-    body { font-size: .75rem; border-top: 2em solid $color-gray-light; padding: 1em .33in; }
+    body { font-size: .8rem; border-top: 2em solid $color-gray-light; padding: .25in .33in; }
     header { 
         border: none; 
         flex-direction: row;
