@@ -2,12 +2,12 @@ html { background: #e2e2e2; color: #333; font-family: 'Roboto', sans-serif; font
 body { background: #fafafa; box-shadow: 0 0 1em silver; margin: 1.5em auto; padding: 1em 1em 2em 1em; width: 88vw; }
 h1, h2, h3 { font-weight: 500; }
 h1 { font-size: 10pt; }
-h2 { border-bottom: 1px dotted #ccc; clear: both; margin-bottom: 0; padding-top: .25em; -moz-transition: color .25s ease; -webkit-transition: color .25s ease; transition: color .25s ease; }
+h2 { border-bottom: 1px dotted #ccc; clear: both; font-size: 1.5em; margin: 0; padding: 0; -moz-transition: color .25s ease; -webkit-transition: color .25s ease; transition: color .25s ease; }
 h3 { clear: both; color: #666; margin-top: 1.6em; }
-body > h1:first-child { margin: 0; }
+body > h1:first-child { margin: 0 0 1em 0; }
 a{ -moz-transition: color .25s ease; -webkit-transition: color .25s ease; transition: color .25s ease; }
-a:link, a:visited { color: blue; }
-a:hover { color: #66c; }
+a:link, a:visited { color: #06c; }
+a:hover, a:active  { color: #09f; }
 p { padding: 0 1em; }
 img { display: block; max-width: 100%; }
 code { background: #eaeaea; font-size: 13pt; padding: .25em .5em; text-align: left; }
@@ -59,7 +59,6 @@ tbody th { background-color: #eaeaea; font-weight: 400; font-style: italic; padd
 	html, body { background: white; color: black; box-shadow: none; font-size: 9pt; margin: 0; width: 100%; }
 	body { padding: 0; }
 	a:link, a:visited { color: gray; }
-	h1,h2,h3,p { }
 	h1, h2 { margin-top: 0; }
 	h1 { display: none; }
 	h2 { border-bottom: 1pt solid silver; }
@@ -76,7 +75,7 @@ tbody th { background-color: #eaeaea; font-weight: 400; font-style: italic; padd
 	.highlight { background: white; border: 1pt dotted gray; color: black; font-style: italic; padding: 0 .25em; }
 	.highlight b { font-style: normal; }
 	.improvShapeLegend.scales { border-top: 1pt solid silver; }
-	.improvShapeLegend .shape { -webkit-print-color-adjust: exact; }
+	.improvShapeLegend .shape { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 	.improvShapes > div { width: 25%; }
 	.improvShapes > div:nth-child(4n+4) { clear: none; }
 	.improvShapes > div:nth-child(5n+5) { clear: left; }

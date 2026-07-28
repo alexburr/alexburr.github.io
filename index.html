@@ -5,17 +5,18 @@
     <title>alexburr.github.io</title>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700" rel="stylesheet" />
 	<style>
-		body { background-color: #f0f0f0; color: #444; font-family: "Open Sans", sans-serif; font-size: 11pt; line-height: 2; margin: 0; padding: 2vh 1vw; }
+		html { background: #e2e2e2; color: #333; font-family: 'Roboto', sans-serif; font-size: 11pt; font-weight: 400; line-height: 1.6; margin: 0; padding: 0; }
 		a:link, a:visited { color: #06c; }
 		a:hover, a:active  { color: #09f; }
-		h1 { border-bottom: 1px dotted rgba(0,0,0,0.25); font-size: 1.25em; font-weight: 400; margin: 0 0 1vh 0; }
-		h2 { font-size: .85em; margin: 0; }
-		ul, li { margin: 0; padding: 0; }
+		h1, h2, h3 { font-weight: 500; }
+		h1 { border-bottom: 1px dotted #ccc; clear: both; font-size: 1.5em; margin: 0; padding: 0; -moz-transition: color .25s ease; -webkit-transition: color .25s ease; transition: color .25s ease; }
+		/* h2 { font-size: .85em; margin: 0; } */
+		ul, li { margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
 			ul { list-style-type: none; }
 				ul:last-child { margin-bottom: 2vh; }
 				ul ul { margin: 0 0 0 .5vw !important; }
-		.group { background-color: #fff; border: 1px solid rgba(0,0,0,0.25); border-radius: .5em; box-shadow: 0 0 .5em rgba(0,0,0,0.125);
-				 margin: 0 auto 1vh auto; padding: .5vh 1vw; vertical-align: top; max-width: 400px; min-width: 20vw; }
+		.group { background: #fafafa; box-shadow: 0 0 1em silver; 
+				 margin: 2vh auto; padding: 1vh 1vw; vertical-align: top; max-width: 400px; min-width: 20vw; }
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 	<script>
@@ -44,12 +45,12 @@
 			<ul>
 				<li ng-repeat="project in group.projects">
 					<a ng-hide="project.subProjects" href="{{group.baseUrl}}{{project.url}}">{{project.name}}</a>
-					<h2 ng-show="project.subProjects">{{project.name}}</h2>
+					<!--<h2 ng-show="project.subProjects">{{project.name}}</h2>
 					<ul ng-show="project.subProjects" >
 						<li ng-repeat="subProject in project.projects">
 							<a href="{{group.baseUrl}}{{project.baseUrl}}{{subProject.url}}">{{subProject.name}}</a>
 						</li>
-					</ul>
+					</ul>-->
 				</li>
 			</ul>
 		</div>
